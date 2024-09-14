@@ -787,7 +787,6 @@ function initHeadlines(e) {
         trigger: e,
         start: "top 80%",
         onEnter: () => {
-          t.play();
         },
       });
   }
