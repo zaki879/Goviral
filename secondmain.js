@@ -47,7 +47,7 @@ function prefersReducedMotion() {
 }
 function transitionOut(e) {
   gsap.set(loadWrap, { display: "flex" }),
-    gsap.set(loadBg, { transformOrigin: "50% 100%" }),
+    gsap.set(loadBg, { transformOrigin: "100% 100%" }),
     gsap.to(e, { y: "-10vh", duration: 1.2, ease: "expo.inOut" }),
     gsap.fromTo(
       pageOverlay,
@@ -140,7 +140,7 @@ function initHomeLoader() {
     navW.setAttribute("theme", "light"),
     gsap.set(e, { cursor: "wait" }),
     gsap.set(a, { display: "flex" }),
-    gsap.set(loadBg, { transformOrigin: "50% 0%" });
+    gsap.set(loadBg, { transformOrigin: "100% 100%" });
   let c = gsap.timeline();
   c
     .to(o, {
