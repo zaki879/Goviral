@@ -48,8 +48,12 @@ function prefersReducedMotion() {
 function transitionOut(e) {
   gsap.set(loadWrap, { display: "flex" }),
     gsap.set(loadBg, { transformOrigin: "50% 100%" }),
-    gsap.to(e, { y: "-10vh", duration: 1.2, ease: "expo.inOut" });
-   
+    gsap.to(e, { y: "-10vh", duration: 1.2, ease: "expo.inOut" }),
+    gsap.fromTo(
+      pageOverlay,
+      { opacity: 0 },
+      { opacity: 1, duration: 1.2, ease: "expo.inOut" }
+    );
 }
 function transitionIn(e, t) {
   e || (e = document.querySelector('[data-barba="container"]')),
@@ -66,7 +70,11 @@ function transitionIn(e, t) {
   setTimeout(() => {
   }, 400),
     gsap.set(loadBg, { transformOrigin: "100% 100%" }),
-   
+    gsap.fromTo(
+      pageOverlay,
+      { opacity: 1 },
+      { opacity: 0, duration: 1.2, ease: "expo.inOut" }
+    ),
     gsap.from(e, {
       y: prefersReducedMotion() ? 0 : "10vh",
       duration: 1.2,
