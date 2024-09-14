@@ -993,39 +993,36 @@
   <script>
     const iframe = document.querySelector('.iframecall');
   
-    // Initialize Lenis for smooth scrolling
-    const lenis = new Lenis({
-      duration: 1.2, // Adjust scroll speed
-      smoothWheel: true,
-      smoothTouch: false
-    });
+    // Function to prevent iframe scroll and allow parent scroll
+    function handleIframeScroll(event) {
+      const rect = iframe.getBoundingClientRect();
+      const isMouseOverIframe = event.clientX >= rect.left && event.clientX <= rect.right && event.clientY >= rect.top && event.clientY <= rect.bottom;
   
-    let scrollTimeout;
-  
-    // Handle the scroll event
-    lenis.on('scroll', () => {
-      // Disable pointer events while scrolling
-      iframe.style.pointerEvents = 'none';
-  
-      // Clear any previously set timeout to ensure we wait for scroll to fully stop
-      clearTimeout(scrollTimeout);
-  
-      // Set a timeout to re-enable pointer events after scrolling stops
-      scrollTimeout = setTimeout(() => {
-        // Re-enable pointer events only after the scroll has stopped
-        iframe.style.pointerEvents = 'auto';
-      }, 150); // Adjust this timeout as needed for sensitivity
-    });
-  
-    // Animation frame loop to keep Lenis smooth scrolling updated
-    function raf(time) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
+      if (isMouseOverIframe) {
+        event.preventDefault(); // Prevent the iframe from capturing the scroll event
+        window.scrollBy(0, event.deltaY); // Scroll the parent window
+      }
     }
   
-    requestAnimationFrame(raf);
+    // Add event listener to the parent window to detect mouse wheel scroll
+    window.addEventListener('wheel', handleIframeScroll, { passive: false });
   </script>
   
+<script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script> 
+<script>
+const lenis = new Lenis()
+
+lenis.on('scroll', (e) => {
+console.log(e)
+})
+
+function raf(time) {
+lenis.raf(time)
+requestAnimationFrame(raf)
+}
+
+requestAnimationFrame(raf)
+</script>
 </body>
 
 </html>
