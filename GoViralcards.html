@@ -20,7 +20,7 @@
   <link rel="stylesheet" href="https://zaki879.github.io/Goviral/style.min.css" />
 </head>
 
-<body data-barba="wrapper">
+<body data-barba="wrapper" id="no-scroll-element">
   <div class="page-w">
  
     <nav theme="light" class="nav-w">
@@ -990,38 +990,20 @@
   <script src="https://zaki879.github.io/Goviral/secondmain.js"></script>
   <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
 
+ 
   <script>
-    const iframe = document.querySelector('.iframecall');
-  
-    // Function to prevent iframe scroll and allow parent scroll
-    function handleIframeScroll(event) {
-      const rect = iframe.getBoundingClientRect();
-      const isMouseOverIframe = event.clientX >= rect.left && event.clientX <= rect.right && event.clientY >= rect.top && event.clientY <= rect.bottom;
-  
-      if (isMouseOverIframe) {
-        event.preventDefault(); // Prevent the iframe from capturing the scroll event
-        window.scrollBy(0, event.deltaY); // Scroll the parent window
-      }
-    }
-  
-    // Add event listener to the parent window to detect mouse wheel scroll
-    window.addEventListener('wheel', handleIframeScroll, { passive: false });
+    document.addEventListener('DOMContentLoaded', () => {
+      const noScrollElement = document.getElementById('no-scroll-element');
+
+      const preventScroll = (event) => {
+        event.preventDefault(); // Prevent the default scroll behavior
+        event.stopPropagation(); // Stop the event from bubbling up
+      };
+
+      noScrollElement.addEventListener('wheel', preventScroll, { passive: false });
+      noScrollElement.addEventListener('touchmove', preventScroll, { passive: false });
+    });
   </script>
-  
-<script>
-const lenis = new Lenis()
-
-lenis.on('scroll', (e) => {
-console.log(e)
-})
-
-function raf(time) {
-lenis.raf(time)
-requestAnimationFrame(raf)
-}
-
-requestAnimationFrame(raf)
-</script>
 </body>
 
 </html>

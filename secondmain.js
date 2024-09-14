@@ -290,9 +290,7 @@ function initCursorAndButtons(e) {
       (s = r),
       requestAnimationFrame(e);
   })(),
-    document.addEventListener("mousemove", (e) => {
-      (o = e.clientX), (r = e.clientY);
-    }),
+  
     document.querySelectorAll("[data-cursor]").forEach((e) => {
       e.addEventListener("mouseenter", function () {
         const e = document.querySelector(".cursor-item");
