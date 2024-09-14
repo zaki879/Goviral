@@ -4,26 +4,7 @@
  *
  * Do NOT use SRI with dynamically generated files! More information: https://www.jsdelivr.com/using-sri-with-dynamic-files
  */
-gsap.registerPlugin(ScrollTrigger, CustomEase);
-const timestamps = [0, 1.5, 3, 4.5, 6, 7.5, 9, 10.5, 12, 13.5];
-let lenis;
-void 0 === Webflow.env("editor") &&
-  ((lenis = new Lenis()),
-  $("[data-lenis-start]").on("click", function () {
-    lenis.start();
-  }),
-  $("[data-lenis-stop]").on("click", function () {
-    lenis.stop();
-  }),
-  $("[data-lenis-toggle]").on("click", function () {
-    $(this).toggleClass("stop-scroll"),
-      $(this).hasClass("stop-scroll") ? lenis.stop() : lenis.start();
-  }),
-  lenis.on("scroll", ScrollTrigger.update),
-  gsap.ticker.add((e) => {
-    lenis.raf(1e3 * e);
-  }),
-  gsap.ticker.lagSmoothing(0));
+
 const isMobile = window.innerWidth < 480,
   isMobileLandscape = window.innerWidth < 768,
   isDesktop = window.innerWidth > 991,
@@ -87,7 +68,6 @@ function transitionIn(e, t) {
     a = e.querySelectorAll("[data-header-fade]");
   new SplitType("[data-header-title]", { types: "lines" });
   setTimeout(() => {
-    titleLines = r.querySelectorAll(".line");
   }, 400),
     gsap.set(loadBg, { transformOrigin: "100% 100%" }),
     gsap.fromTo(
