@@ -82,7 +82,7 @@ function transitionIn(e, t) {
         duration: 1.2,
         ease: "expo.inOut",
         onComplete: () => {
-          gsap.set(loadWrap, { display: "none" });
+          gsap.set(loadWrap, { display: "flex" });
         },
       }
     ),
@@ -155,7 +155,7 @@ function initHomeLoader() {
         duration: 1.4,
         onComplete: () => {
           gsap.set(e, { cursor: "default" }),
-            gsap.set(loadWrap, { display: "none" }),
+            gsap.set(loadWrap, { display: "flex" }),
             lenis.start(),
             t.classList.remove("is--transitioning"),
             ScrollTrigger.refresh(),

@@ -9011,7 +9011,7 @@ body {
 
 
 .w-editor .load-w {
-    display: none;
+    display: flex;
 }
 
 .nav-dd {
