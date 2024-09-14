@@ -16,8 +16,7 @@
         (n.className += t + "touch");
     })(window, document);
   </script>
-  <link href="logotitle4.png" rel="shortcut icon" type="image/x-icon" />
-  <link href="logotitle4.png" rel="apple-touch-icon" />
+
   <link rel="stylesheet" href="https://zaki879.github.io/Goviral/style.min.css" />
 </head>
 
@@ -990,7 +989,39 @@
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@barba/core@2.9.7/dist/barba.umd.min.js"></script>
   <script src="https://zaki879.github.io/Goviral/secondmain.js"></script>
- 
+  <script>
+    const iframe = document.querySelector('.iframecall');
+  
+    // Function to prevent iframe scroll and allow parent scroll
+    function handleIframeScroll(event) {
+      const rect = iframe.getBoundingClientRect();
+      const isMouseOverIframe = event.clientX >= rect.left && event.clientX <= rect.right && event.clientY >= rect.top && event.clientY <= rect.bottom;
+  
+      if (isMouseOverIframe) {
+        event.preventDefault(); // Prevent the iframe from capturing the scroll event
+        window.scrollBy(0, event.deltaY); // Scroll the parent window
+      }
+    }
+  
+    // Add event listener to the parent window to detect mouse wheel scroll
+    window.addEventListener('wheel', handleIframeScroll, { passive: false });
+  </script>
+  
+<script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script> 
+<script>
+const lenis = new Lenis()
+
+lenis.on('scroll', (e) => {
+console.log(e)
+})
+
+function raf(time) {
+lenis.raf(time)
+requestAnimationFrame(raf)
+}
+
+requestAnimationFrame(raf)
+</script>
 </body>
 
 </html>
