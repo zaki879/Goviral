@@ -1,3 +1,9 @@
+/**
+ * Minified by jsDelivr using Terser v5.19.2.
+ * Original file: /gh/ilja-van-eck/Bouchebtoul@2.0.0/src/script.js
+ *
+ * Do NOT use SRI with dynamically generated files! More information: https://www.jsdelivr.com/using-sri-with-dynamic-files
+ */
 gsap.registerPlugin(ScrollTrigger, CustomEase);
 const timestamps = [0, 1.5, 3, 4.5, 6, 7.5, 9, 10.5, 12, 13.5];
 let lenis;
@@ -23,7 +29,8 @@ const isMobile = window.innerWidth < 480,
   isDesktop = window.innerWidth > 991,
   loadWrap = document.querySelector(".load-w"),
   pageOverlay = document.querySelector(".page-overlay"),
-  loadBg = loadWrap.querySelector(".load-bg");
+  loadBg = loadWrap.querySelector(".load-bg"),
+  navW = document.querySelector(".nav-w");
 let titleLines,
   closeMenu,
   ranHomeLoader = !1,
@@ -71,14 +78,18 @@ function transitionIn(e, t) {
   e || (e = document.querySelector('[data-barba="container"]')),
     t || (t = e.getAttribute("data-barba-namespace"));
   const o = "home" === t ? "light" : "dark";
-
+  navW.removeAttribute("theme"),
+    setTimeout(() => {
+      navW.setAttribute("theme", o);
+    }, 500),
     mobileMenuOpen && closeMenu();
   let r = e.querySelector("[data-header-title]"),
     a = e.querySelectorAll("[data-header-fade]");
   new SplitType("[data-header-title]", { types: "lines" });
   setTimeout(() => {
+    titleLines = r.querySelectorAll(".line");
   }, 400),
-    gsap.set(loadBg, { transformOrigin: "100% 100%" }),
+    gsap.set(loadBg, { transformOrigin: "50% 0%" }),
     gsap.fromTo(
       pageOverlay,
       { opacity: 1 },
@@ -92,7 +103,7 @@ function transitionIn(e, t) {
     }),
     gsap.fromTo(
       loadBg,
-      { scaleY: 0, borderRadius: "0px 0px 0vw 0vw" },
+      { scaleY: 1, borderRadius: "0px 0px 0vw 0vw" },
       {
         scaleY: 0,
         borderRadius: "0px 0px 100vw 100vw",
@@ -146,6 +157,7 @@ function initHomeLoader() {
     path: r.getAttribute("data-animation-path"),
   });
   t.classList.add("is--transitioning"),
+    navW.setAttribute("theme", "light"),
     gsap.set(e, { cursor: "wait" }),
     gsap.set(a, { display: "flex" }),
     gsap.set(loadBg, { transformOrigin: "50% 0%" });
@@ -787,6 +799,7 @@ function initHeadlines(e) {
         trigger: e,
         start: "top 80%",
         onEnter: () => {
+          t.play();
         },
       });
   }
@@ -883,6 +896,7 @@ function initMobileSliders() {
         duration: 0.3,
         ease: "power1.inOut",
         onComplete: () => {
+          t.play();
         },
       });
   }
@@ -939,7 +953,17 @@ function initMobileSliders() {
     });
 }
 function initNavToggle() {
-
+  const e = document.querySelector("[data-nav-toggle]");
+  ScrollTrigger.create({
+    trigger: e,
+    start: "top top",
+    onEnter: () => {
+      navW.setAttribute("theme", "dark");
+    },
+    onLeaveBack: () => {
+      navW.setAttribute("theme", "light");
+    },
+  });
 }
 function initHomeHero(e) {
   if (prefersReducedMotion()) return;
@@ -2139,7 +2163,10 @@ function initScrollingTitles(e) {
 }
 function initGeneral(e) {
   initSplitText(e),
+    initBurgerMenu(),
+    initNavScroll(),
     initCursorAndButtons(e),
+    initToolTips(),
     initVideoControls(e),
     prefersReducedMotion() ||
       (initDocumentClick(),
@@ -2148,12 +2175,18 @@ function initGeneral(e) {
       }, 1e3));
 }
 function initHome(e) {
+  initHomeHero(e),
+    initNavToggle(),
+    initHomeSliders(e),
     isMobile && initMobileSliders(),
+    initHomeIntro(),
+    initBushCTA(e),
     initVideoOnHover(),
     initStackingNav(),
     initCardsIntro(),
     initCardsHover(),
     initGuidesOverlay(e),
+    initGuidesCollage(e),
     initHomeParallax(),
     initStackGuidanceAnimations(e),
     initStackSaveAnimations(e),
@@ -2164,7 +2197,15 @@ function initHome(e) {
     initMemberStories();
 }
 function initGuidesPage(e) {
- 
+  initGuidesSlider(),
+    initGuideCardsHover(),
+    initCardsIntro(),
+    initGuidesOverlay(e),
+    initImgScroll(),
+    toggleTextBlocks(e),
+    initStackGuidanceAnimations(e),
+    initGoalsScroll(),
+    initBlueSections();
 }
 function initSaveInvest(e) {
   initColorChanges(),
@@ -2208,6 +2249,7 @@ window.addEventListener("resize", handleResize),
         name: "default",
         sync: !0,
         leave: (e) => (
+          transitionOut(e.current.container),
           gsap.fromTo(
             loadBg,
             { scaleY: 0, borderRadius: "100vw 100vw 0px 0px" },
