@@ -787,6 +787,7 @@ function initHeadlines(e) {
         trigger: e,
         start: "top 80%",
         onEnter: () => {
+          t.play();
         },
       });
   }
@@ -883,7 +884,6 @@ function initMobileSliders() {
         duration: 0.3,
         ease: "power1.inOut",
         onComplete: () => {
-          t.play();
         },
       });
   }
