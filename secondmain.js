@@ -48,7 +48,7 @@ function prefersReducedMotion() {
 function transitionOut(e) {
   gsap.set(loadWrap, { display: "flex" }),
     gsap.set(loadBg, { transformOrigin: "100% 100%" }),
-    gsap.to(e, { y: "-10vh", duration: 1.2, ease: "expo.inOut" }),
+    gsap.to(e, { y: "0vh", duration: 0, ease: "expo.inOut" }),
     gsap.fromTo(
       pageOverlay,
       { opacity: 0 },
