@@ -89,7 +89,7 @@ function transitionIn(e, t) {
   setTimeout(() => {
     titleLines = r.querySelectorAll(".line");
   }, 400),
-    gsap.set(loadBg, { transformOrigin: "50% 0%" }),
+    gsap.set(loadBg, { transformOrigin: "100% 100%" }),
     gsap.fromTo(
       pageOverlay,
       { opacity: 1 },
@@ -103,14 +103,13 @@ function transitionIn(e, t) {
     }),
     gsap.fromTo(
       loadBg,
-      { scaleY: 1, borderRadius: "0px 0px 0vw 0vw" },
+      { scaleY: 0, borderRadius: "0px 0px 0vw 0vw" },
       {
         scaleY: 0,
         borderRadius: "0px 0px 100vw 100vw",
         duration: 1.2,
         ease: "expo.inOut",
         onComplete: () => {
-          gsap.set(loadWrap, { display: "none" });
         },
       }
     ),
