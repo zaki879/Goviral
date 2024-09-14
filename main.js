@@ -1509,7 +1509,10 @@
       hC = (pe.env.ios = /(ipod|iphone|ipad)/.test(Mi));
     pe.env.safari = /safari/.test(Mi) && !uC && !hC;
     var zs;
-    oc 
+    oc &&
+      sC.on("touchstart mousedown", function (e) {
+        zs = e.target;
+      });
     pe.validClick = oc
       ? function (e) {
           return e === zs || Yt.contains(e, zs);
@@ -31188,7 +31191,14 @@
             s = !1;
           }
           function g() {
-          
+            a.removeEventListener("touchstart", f, !1),
+              a.removeEventListener("touchmove", m, !1),
+              a.removeEventListener("touchend", d, !1),
+              a.removeEventListener("touchcancel", p, !1),
+              a.removeEventListener("mousemove", m, !1),
+              a.removeEventListener("mouseup", d, !1),
+              a.removeEventListener("mouseout", p, !1),
+              (a = null);
           }
           this.destroy = g;
         }
