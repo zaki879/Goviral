@@ -254,110 +254,7 @@ function resetLottieAnimations(e) {
   });
 }
 function initBurgerMenu() {
-  let e,
-    t = document.querySelector(".menu-w"),
-    o = t.querySelector(".menu-bg"),
-    r = document.querySelector(".menu-button"),
-    a = document.querySelector(".menu-button__line.is--top"),
-    n = document.querySelector(".menu-button__line.is--center"),
-    i = document.querySelector(".menu-button__line.is--btm"),
-    l = document.querySelector(".nav-logo"),
-    s = document.querySelectorAll(".logo-path"),
-    c = document.querySelector(".nav-button.is--primary"),
-    d = t.querySelectorAll("[data-menu-fade]"),
-    u =
-      (t.querySelectorAll(".footer-col"),
-      t.querySelectorAll("[data-menu-link]"));
-  window.innerWidth < 768 && gsap.set(s, { scale: 0 });
-  (closeMenu = () => {
-    (mobileMenuOpen = !1),
-      gsap
-        .timeline({
-          defaults: { duration: 0.5, ease: "power3.out", overwrite: !0 },
-        })
-        .to(u, {
-          yPercent: 50,
-          autoAlpha: 0,
-          stagger: { each: 0.05, from: "end" },
-        })
-        .to(
-          d,
-          { yPercent: 50, autoAlpha: 0, stagger: { each: 0.025, from: "end" } },
-          "<"
-        )
-        .to(r, { color: e }, 0)
-        .to(n, { scaleX: 1, ease: "power3.out" }, 0)
-        .to(a, { rotate: 0, y: 0, ease: "back.out(2)" }, 0)
-        .to(i, { rotate: 0, y: 0, ease: "back.out(2)" }, 0)
-        .to(
-          o,
-          {
-            scaleY: 0,
-            borderRadius: "0vw 0vw 100vw 100vw",
-            ease: "expo.inOut",
-            duration: 0.8,
-          },
-          0
-        )
-        .to(l, { color: e }, 0.5)
-        .to(
-          s,
-          {
-            scale: 0,
-            rotate: () => 24 * Math.random() - 12,
-            stagger: { each: 0.015, from: "end" },
-            ease: "power3.out",
-          },
-          0
-        )
-        .to(c, { autoAlpha: 1, yPercent: 0 }, "<")
-        .set(t, { display: "none" });
-  }),
-    r.addEventListener("click", () => {
-      mobileMenuOpen
-        ? closeMenu()
-        : ((mobileMenuOpen = !0),
-          (e = l.style.color),
-          gsap
-            .timeline({
-              defaults: { duration: 0.5, ease: "back.out(3)", overwrite: !0 },
-            })
-            .set(t, { display: "flex" })
-            .fromTo(
-              o,
-              { scaleY: 0, borderRadius: "0vw 0vw 100vw 100vw" },
-              {
-                scaleY: 1,
-                borderRadius: "0vw 0vw 0vw 0vw",
-                ease: "expo.inOut",
-                duration: 1,
-              }
-            )
-            .to(l, { color: "black" }, 0)
-            .fromTo(
-              s,
-              { scale: 0, rotate: () => 24 * Math.random() - 12 },
-              { scale: 1, rotate: 0, stagger: 0.015, ease: "back.out(3)" },
-              0.4
-            )
-            .to(c, { autoAlpha: 0, yPercent: -50 }, 0)
-            .to(r, { color: "black" }, 0)
-            .to(n, { scaleX: 0, ease: "power3.out" }, 0)
-            .to(a, { rotate: 135, y: 4, ease: "back.out(3)" }, 0)
-            .to(i, { rotate: -135, y: -4, ease: "back.out(3)" }, 0)
-            .fromTo(
-              u,
-              { yPercent: 50, autoAlpha: 0 },
-              { yPercent: 0, autoAlpha: 1, stagger: 0.05 },
-              0.6
-            )
-            .fromTo(
-              d,
-              { yPercent: 50, autoAlpha: 0 },
-              { yPercent: 0, autoAlpha: 1, stagger: 0.025 },
-              "<"
-            ));
-    });
+ 
 }
 function initNavScroll() {
   const e = document.querySelectorAll("[data-nav-fade]");
@@ -2163,7 +2060,7 @@ function initScrollingTitles(e) {
 }
 function initGeneral(e) {
   initSplitText(e),
-    initBurgerMenu(),
+   
     initNavScroll(),
     initCursorAndButtons(e),
     initToolTips(),
