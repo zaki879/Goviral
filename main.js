@@ -25478,8 +25478,7 @@
         DROPDOWN_CLOSE: "DROPDOWN_CLOSE",
         MOUSE_CLICK: "MOUSE_CLICK",
         MOUSE_SECOND_CLICK: "MOUSE_SECOND_CLICK",
-        MOUSE_DOWN: "MOUSE_DOWN",
-        MOUSE_UP: "MOUSE_UP",
+  
         MOUSE_OVER: "MOUSE_OVER",
         MOUSE_OUT: "MOUSE_OUT",
         MOUSE_MOVE: "MOUSE_MOVE",
@@ -25578,7 +25577,6 @@
       p4 = {
         MOUSE_CLICK_INTERACTION: "MOUSE_CLICK_INTERACTION",
         MOUSE_HOVER_INTERACTION: "MOUSE_HOVER_INTERACTION",
-        MOUSE_MOVE_INTERACTION: "MOUSE_MOVE_INTERACTION",
         SCROLL_INTO_VIEW_INTERACTION: "SCROLL_INTO_VIEW_INTERACTION",
         SCROLLING_IN_VIEW_INTERACTION: "SCROLLING_IN_VIEW_INTERACTION",
         MOUSE_MOVE_IN_VIEWPORT_INTERACTION:
@@ -29723,8 +29721,6 @@
         ({
           MOUSE_CLICK: TQ,
           MOUSE_SECOND_CLICK: IQ,
-          MOUSE_DOWN: AQ,
-          MOUSE_UP: PQ,
           MOUSE_OVER: CQ,
           MOUSE_OUT: wQ,
           DROPDOWN_CLOSE: MQ,
@@ -29810,7 +29806,7 @@
             throttle: !0,
           },
         ]),
-        ($A = "mouseover mouseout"),
+      
         (Hh = { types: zh }),
         (XQ = { PAGE_START: oP, PAGE_FINISH: sP }),
         (Ti = (() => {
@@ -31155,9 +31151,6 @@
             a.addEventListener("touchmove", m, !1),
             a.addEventListener("touchend", d, !1),
             a.addEventListener("touchcancel", p, !1),
-            a.addEventListener("mousemove", m, !1),
-            a.addEventListener("mouseup", d, !1),
-            a.addEventListener("mouseout", p, !1);
           function f(h) {
             var v = h.touches;
             (v && v.length > 1) ||
@@ -31182,23 +31175,13 @@
             }
           }
           function d(h) {
-            if (s && ((s = !1), o && h.type === "mouseup")) {
-              h.preventDefault(), h.stopPropagation(), (o = !1);
-              return;
-            }
+          
           }
           function p() {
             s = !1;
           }
           function g() {
-            a.removeEventListener("touchstart", f, !1),
-              a.removeEventListener("touchmove", m, !1),
-              a.removeEventListener("touchend", d, !1),
-              a.removeEventListener("touchcancel", p, !1),
-              a.removeEventListener("mousemove", m, !1),
-              a.removeEventListener("mouseup", d, !1),
-              a.removeEventListener("mouseout", p, !1),
-              (a = null);
+           
           }
           this.destroy = g;
         }
@@ -31242,10 +31225,7 @@
           f = 900,
           m = "focusout" + l,
           d = "keydown" + l,
-          p = "mouseenter" + l,
-          g = "mousemove" + l,
-          h = "mouseleave" + l,
-          v = (o ? "click" : "mouseup") + l,
+     
           y = "w-close" + l,
           b = "setting" + l,
           S = e(document),
@@ -31274,9 +31254,7 @@
             (B.list = B.el.children(".w-dropdown-list")),
             (B.links = B.list.find("a:not(.w-dropdown .w-dropdown a)")),
             (B.complete = j(B)),
-            (B.mouseLeave = A(B)),
-            (B.mouseUpOutside = N(B)),
-            (B.mouseMoveOutside = F(B)),
+       
             I(B);
           var J = B.toggle.attr("id"),
             ce = B.list.attr("id");
@@ -31349,9 +31327,7 @@
               Or.redraw.up(),
               q.manageZ && q.el.css("z-index", f + 1);
             var X = Or.env("editor");
-            s || S.on(v, q.mouseUpOutside),
-              q.hovering && !X && q.el.on(h, q.mouseLeave),
-              q.hovering && X && S.on(g, q.mouseMoveOutside),
+       
               window.clearTimeout(q.delayId);
           }
         }
@@ -31361,9 +31337,7 @@
             var B = q.config;
             if (
               (u.outro(0, q.el[0]),
-              S.off(v, q.mouseUpOutside),
-              S.off(g, q.mouseMoveOutside),
-              q.el.off(h, q.mouseLeave),
+           
               window.clearTimeout(q.delayId),
               !B.delay || X)
             )
@@ -31385,7 +31359,6 @@
         }
         function N(q) {
           return (
-            q.mouseUpOutside && S.off(v, q.mouseUpOutside),
             r(function (X) {
               if (q.open) {
                 var K = e(X.target);
@@ -32027,7 +32000,7 @@ Webflow.require("ix2").init({
       id: "e",
       name: "",
       animationType: "custom",
-      eventTypeId: "MOUSE_OVER",
+
       action: {
         id: "",
         actionTypeId: "GENERAL_START_ACTION",
@@ -32071,7 +32044,6 @@ Webflow.require("ix2").init({
       id: "e-2",
       name: "",
       animationType: "custom",
-      eventTypeId: "MOUSE_OUT",
       action: {
         id: "",
         actionTypeId: "GENERAL_START_ACTION",
