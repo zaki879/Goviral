@@ -1566,7 +1566,6 @@ textarea.w-select {
 
 .w-lightbox-backdrop,
 .w-lightbox-container {
-    -webkit-overflow-scrolling: touch;
     height: 100%;
     overflow: auto
 }
@@ -9008,25 +9007,7 @@ body {
     scrollbar-width: none;
 }
 
-html.lenis {
-    height: auto;
-}
 
-.lenis.lenis-smooth {
-    scroll-behavior: auto;
-}
-
-.lenis.lenis-smooth [data-lenis-prevent] {
-    overscroll-behavior: contain;
-}
-
-.lenis.lenis-stopped {
-    overflow: hidden;
-}
-
-.lenis.lenis-scrolling iframe {
-    pointer-events: none;
-}
 
 .w-editor .load-w {
     display: none;
