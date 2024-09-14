@@ -9002,7 +9002,7 @@ html,
 body {
     width: 100%;
     height: auto !important;
-    min-height: 100%;
+    height: 65vh;
     -ms-overflow-style: none;
     scrollbar-width: none;
 }
