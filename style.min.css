@@ -5231,7 +5231,7 @@ iframe{
     justify-content: center;
     align-items: center;
     width: 100vw;
-    height: 65vh;
+    height: 100%;
     display: none;
     position: absolute;
     top: 0%;
