@@ -327,18 +327,7 @@ function initCursorAndButtons(e) {
     });
 }
 function initToolTips() {
-  const e = document.querySelectorAll(".tooltip-w");
-  e &&
-    e.forEach((e) => {
-      e.addEventListener("mouseenter", () => {
-        const t = e.querySelector(".tooltip");
-        t && t.classList.add("active");
-      }),
-        e.addEventListener("mouseleave", () => {
-          const t = e.querySelector(".tooltip");
-          t && t.classList.remove("active");
-        });
-    });
+
 }
 function initHomeVideo() {
   let e;
@@ -1525,26 +1514,8 @@ function initPriceCards(e) {
       0
     ),
     i.forEach((e) => {
-      e.addEventListener("mouseenter", () => {
-        i.forEach((e) => e.classList.remove("is--active")),
-          e.classList.add("is--active"),
-          gsap.to(e, {
-            scale: prefersReducedMotion() ? 1 : 1.1,
-            duration: 0.3,
-            ease: "back.out(1.8)",
-            overwrite: "auto",
-          });
-      }),
-        e.addEventListener("mouseleave", () => {
-          e.classList.remove("is--active"),
-            a.classList.add("is--active"),
-            gsap.to(e, {
-              scale: 1,
-              duration: 0.3,
-              ease: "back.out(1.5)",
-              overwrite: "auto",
-            });
-        });
+   
+     
     });
   const c = e.querySelector("[data-price-solo]"),
     d = e.querySelector("[data-price-joint]"),
