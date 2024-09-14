@@ -1397,122 +1397,7 @@ function initHomeParallax() {
     .fromTo(i, { lineHeight: "0.9" }, { lineHeight: "1.1", duration: 0.2 }, 0.8)
     .from(l, { opacity: 0, yPercent: 100, duration: 0.2 }, 0.8);
 }
-function initStackingNav() {
-  const e = document.querySelectorAll(".stacking-card");
-  if (!e) return;
-  e.forEach((e, t) => {
-    let o = e.previousElementSibling;
-    gsap
-      .timeline({
-        scrollTrigger: {
-          trigger: e,
-          start: "top 65%",
-          end: "top top",
-          scrub: 1,
-        },
-      })
-      .fromTo(
-        o,
-        { scale: 1, filter: (prefersReducedMotion(), "blur(0px)") },
-        {
-          scale: 0.85,
-          filter: prefersReducedMotion() ? "blur(0px)" : "blur(8px)",
-        }
-      )
-      .fromTo(
-        e,
-        { boxShadow: "0px 0px 0px 0px rgba(0, 0, 0, 0.02)" },
-        { boxShadow: "0px -49px 49px 0px rgba(0, 0, 0, 0.02)" }
-      );
-  });
-  const t = document.querySelectorAll(".stacking-nav__link");
-  function o(e) {
-    t.forEach((t, o) => {
-      t.classList.toggle("is--active", o === e);
-    });
-  }
-  t.forEach((e, t) => {
-    e.addEventListener("click", (e) => {
-      e.preventDefault();
-      const o = document.querySelector("[data-stack-wrap]");
-      if (!o) return;
-      const r = o.getBoundingClientRect(),
-        a = window.scrollY,
-        n = r.top + a,
-        i = r.height;
-      let l = n;
-      switch (t) {
-        case 0:
-          l = n;
-          break;
-        case 1:
-          l = n + i / 3;
-          break;
-        case 2:
-          l = n + i - i / 3;
-      }
-      lenis.scrollTo(l, { duration: 1.2 });
-    });
-  }),
-    e.forEach((e, t) => {
-      ScrollTrigger.create({
-        trigger: e,
-        start: "top center",
-        end: "bottom center",
-        onEnter: () => o(t),
-        onLeave: () => o(t + 1),
-        onEnterBack: () => o(t),
-        onLeaveBack: () => o(t - 1),
-      });
-    });
-  let r = gsap.timeline({ default: { ease: "back.out(3)", duration: 0.5 } }),
-    a = () => {
-      ScrollTrigger.refresh(),
-        r.clear(0),
-        r.progress(0),
-        r
-          .set(".stacking-cards__nav", { display: "flex" })
-          .to(".stacking-nav__bg", {
-            width: "100%",
-            ease: "back.out(2)",
-            duration: 0.5,
-          })
-          .to(
-            ".stacking-nav__link",
-            {
-              opacity: 1,
-              y: "0%",
-              stagger: 0.1,
-              ease: "back.out(3)",
-              duration: 0.45,
-            },
-            0
-          );
-    },
-    n = () => {
-      r.clear(0),
-        r.progress(0),
-        r
-          .to(".stacking-nav__link", {
-            opacity: 0,
-            y: "50%",
-            stagger: 0.1,
-            duration: 0.4,
-          })
-          .to(".stacking-nav__bg", { width: "0%", duration: 0.4 }, 0.1)
-          .set(".stacking-cards__nav", { display: "none" });
-    };
-  n(),
-    ScrollTrigger.create({
-      trigger: "[data-stack-wrap]",
-      start: "top bottom",
-      end: "bottom bottom-=25%",
-      onEnter: a,
-      onEnterBack: a,
-      onLeave: n,
-      onLeaveBack: n,
-    });
-}
+
 function initStackGuidanceAnimations(e) {
   e || (e = document.querySelector('[data-barba="container"]'));
   let t = e.querySelector("[data-stack-guidance]");
@@ -1983,7 +1868,6 @@ function initHome(e) {
     initHomeIntro(),
     initBushCTA(e),
     initVideoOnHover(),
-    initStackingNav(),
     initCardsIntro(),
     initCardsHover(),
     initGuidesOverlay(e),
