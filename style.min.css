@@ -258,7 +258,7 @@ html {
 
 body {
     color: #333;
-    background-color: #fff;
+    background-color: #000 !important;
     min-height: 100%;
     margin: 0;
     font-family: Arial, sans-serif;
@@ -390,7 +390,7 @@ pre.w-code-block code {
     z-index: 2147483647 !important;
     color: #aaadb0 !important;
     opacity: 1 !important;
-    background-color: #fff !important;
+    background-color: #000 !important;
     border-radius: 3px !important;
     width: auto !important;
     height: auto !important;
@@ -2348,7 +2348,7 @@ a {
 
 .section.is--blue {
     z-index: 2;
-    background-color: rgba(249,252,255,255);
+    background-color: rgba(0,0,0,0);
 }
 
 .section.is--page__end {
