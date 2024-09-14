@@ -291,24 +291,7 @@ function initCursorAndButtons(e) {
       (s = r),
       requestAnimationFrame(e);
   })(),
-    document.addEventListener("mousemove", (e) => {
-      (o = e.clientX), (r = e.clientY);
-    }),
-    document.querySelectorAll("[data-cursor]").forEach((e) => {
-      e.addEventListener("mouseenter", function () {
-        const e = document.querySelector(".cursor-item");
-        e && (e.style.display = "flex");
-        const t = this.getAttribute("data-cursor");
-        if (t) {
-          const e = document.querySelector("[data-cursor-text]");
-          e && (e.textContent = t);
-        }
-      }),
-        e.addEventListener("mouseleave", function () {
-          const e = document.querySelector(".cursor-item");
-          e && (e.style.display = "");
-        });
-    }),
+
     e.querySelectorAll(".button").forEach((e) => {
       prefersReducedMotion() ||
         e.addEventListener("mouseenter", function () {
@@ -1619,7 +1602,7 @@ function initGuidesSlider() {
     speed: 600,
     effect: "creative",
     keyboard: { enabled: !0, onlyInViewport: !1 },
-    mousewheel: { invert: !1 },
+   
     creativeEffect: {
       prev: { shadow: !1, translate: [0, 0, -80], rotate: [0, 0, -3] },
       next: { translate: ["105%", 0, 1] },
