@@ -1432,7 +1432,162 @@
     })();
   });
   var tt = E((ree, hc) => {
-  
+    "use strict";
+    var pe = {},
+      Fr = {},
+      Dr = [],
+      Hs = window.Webflow || [],
+      Yt = window.jQuery,
+      pt = Yt(window),
+      sC = Yt(document),
+      It = Yt.isFunction,
+      ft = (pe._ = rc()),
+      ic = (pe.tram = Gs() && Yt.tram),
+      Oi = !1,
+      js = !1;
+    ic.config.hideBackface = !1;
+    ic.config.keepInherited = !0;
+    pe.define = function (e, t, r) {
+      Fr[e] && sc(Fr[e]);
+      var n = (Fr[e] = t(Yt, ft, r) || {});
+      return ac(n), n;
+    };
+    pe.require = function (e) {
+      return Fr[e];
+    };
+    function ac(e) {
+      pe.env() &&
+        (It(e.design) && pt.on("__wf_design", e.design),
+        It(e.preview) && pt.on("__wf_preview", e.preview)),
+        It(e.destroy) && pt.on("__wf_destroy", e.destroy),
+        e.ready && It(e.ready) && oC(e);
+    }
+    function oC(e) {
+      if (Oi) {
+        e.ready();
+        return;
+      }
+      ft.contains(Dr, e.ready) || Dr.push(e.ready);
+    }
+    function sc(e) {
+      It(e.design) && pt.off("__wf_design", e.design),
+        It(e.preview) && pt.off("__wf_preview", e.preview),
+        It(e.destroy) && pt.off("__wf_destroy", e.destroy),
+        e.ready && It(e.ready) && lC(e);
+    }
+    function lC(e) {
+      Dr = ft.filter(Dr, function (t) {
+        return t !== e.ready;
+      });
+    }
+    pe.push = function (e) {
+      if (Oi) {
+        It(e) && e();
+        return;
+      }
+      Hs.push(e);
+    };
+    pe.env = function (e) {
+      var t = window.__wf_design,
+        r = typeof t < "u";
+      if (!e) return r;
+      if (e === "design") return r && t;
+      if (e === "preview") return r && !t;
+      if (e === "slug") return r && window.__wf_slug;
+      if (e === "editor") return window.WebflowEditor;
+      if (e === "test") return window.__wf_test;
+      if (e === "frame") return window !== window.top;
+    };
+    var Mi = navigator.userAgent.toLowerCase(),
+      oc = (pe.env.touch =
+        "ontouchstart" in window ||
+        (window.DocumentTouch && document instanceof window.DocumentTouch)),
+      uC = (pe.env.chrome =
+        /chrome/.test(Mi) &&
+        /Google/.test(navigator.vendor) &&
+        parseInt(Mi.match(/chrome\/(\d+)\./)[1], 10)),
+      hC = (pe.env.ios = /(ipod|iphone|ipad)/.test(Mi));
+    pe.env.safari = /safari/.test(Mi) && !uC && !hC;
+    var zs;
+    oc &&
+      sC.on("touchstart mousedown", function (e) {
+        zs = e.target;
+      });
+    pe.validClick = oc
+      ? function (e) {
+          return e === zs || Yt.contains(e, zs);
+        }
+      : function () {
+          return !0;
+        };
+    var lc = "resize.webflow orientationchange.webflow load.webflow",
+      cC = "scroll.webflow " + lc;
+    pe.resize = Ws(pt, lc);
+    pe.scroll = Ws(pt, cC);
+    pe.redraw = Ws();
+    function Ws(e, t) {
+      var r = [],
+        n = {};
+      return (
+        (n.up = ft.throttle(function (i) {
+          ft.each(r, function (a) {
+            a(i);
+          });
+        })),
+        e && t && e.on(t, n.up),
+        (n.on = function (i) {
+          typeof i == "function" && (ft.contains(r, i) || r.push(i));
+        }),
+        (n.off = function (i) {
+          if (!arguments.length) {
+            r = [];
+            return;
+          }
+          r = ft.filter(r, function (a) {
+            return a !== i;
+          });
+        }),
+        n
+      );
+    }
+    pe.location = function (e) {
+      window.location = e;
+    };
+    pe.env() && (pe.location = function () {});
+    pe.ready = function () {
+      (Oi = !0), js ? fC() : ft.each(Dr, nc), ft.each(Hs, nc), pe.resize.up();
+    };
+    function nc(e) {
+      It(e) && e();
+    }
+    function fC() {
+      (js = !1), ft.each(Fr, ac);
+    }
+    var pr;
+    pe.load = function (e) {
+      pr.then(e);
+    };
+    function uc() {
+      pr && (pr.reject(), pt.off("load", pr.resolve)),
+        (pr = new Yt.Deferred()),
+        pt.on("load", pr.resolve);
+    }
+    pe.destroy = function (e) {
+      (e = e || {}),
+        (js = !0),
+        pt.triggerHandler("__wf_destroy"),
+        e.domready != null && (Oi = e.domready),
+        ft.each(Fr, sc),
+        pe.resize.off(),
+        pe.scroll.off(),
+        pe.redraw.off(),
+        (Dr = []),
+        (Hs = []),
+        pr.state() === "pending" && uc();
+    };
+    Yt(pe.ready);
+    uc();
+    hc.exports = window.Webflow = pe;
   });
   var Us = E((nee, cc) => {
     function pC(e, t, r, n) {
