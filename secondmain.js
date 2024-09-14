@@ -117,102 +117,7 @@ function transitionIn(e, t) {
       }));
 }
 function initHomeLoader() {
-  if (!0 === ranHomeLoader) return;
-  let e = document.body,
-    t = document.querySelector(".main-w"),
-    o = loadWrap.querySelector(".load-progress"),
-    r = loadWrap.querySelector(".load-logo"),
-    a = loadWrap.querySelector(".load-bar"),
-    n = document.querySelector("header"),
-    i = n.querySelector("[data-header-title]"),
-    l = n.querySelectorAll("[data-header-fade]");
-  new SplitType("[data-header-title]", { types: "lines" });
-  setTimeout(() => {
-    titleLines = i.querySelectorAll(".line");
-  }, 1e3);
-  let s = lottie.loadAnimation({
-    container: r,
-    renderer: "svg",
-    loop: !1,
-    autoplay: !1,
-    path: r.getAttribute("data-animation-path"),
-  });
-  t.classList.add("is--transitioning"),
-    navW.setAttribute("theme", "light"),
-    gsap.set(e, { cursor: "wait" }),
-    gsap.set(a, { display: "flex" }),
-    gsap.set(loadBg, { transformOrigin: "50% 0%" });
-  let c = gsap.timeline();
-  c
-    .to(o, {
-      width: "100%",
-      duration: 4,
-      delay: 0.3,
-      ease: "power3.inOut",
-      onStart: () => {
-        s.play();
-      },
-    })
-    .to(a, { scaleX: 0, duration: 0.4, delay: 0.1, ease: "power3.in" })
-    .to(r, { opacity: 0, duration: 0.4, delay: 0.2, ease: "power3.in" }, "<")
-    .to(
-      loadBg,
-      {
-        scaleY: 0,
-        borderRadius: "0px 0px 100vw 100vw",
-        ease: "expo.inOut",
-        duration: 1.4,
-        onComplete: () => {
-          gsap.set(e, { cursor: "default" }),
-            gsap.set(loadWrap, { display: "none" }),
-            lenis.start(),
-            t.classList.remove("is--transitioning"),
-            ScrollTrigger.refresh(),
-            (ranHomeLoader = !0),
-            localStorage.setItem("loaderShown", "true");
-        },
-        onStart: () => {
-          initHomeVideo();
-        },
-      },
-      4.3
-    )
-    .from(
-      t,
-      {
-        yPercent: prefersReducedMotion() ? 0 : 10,
-        duration: 1.6,
-        ease: "expo.inOut",
-        clearProps: "all",
-      },
-      "<"
-    )
-    .from(
-      l,
-      {
-        yPercent: prefersReducedMotion() ? 0 : 40,
-        opacity: 0,
-        stagger: 0.15,
-        ease: "back.out(4)",
-        clearProps: "all",
-        duration: 0.6,
-      },
-      "<+=1"
-    ),
-    gsap.delayedCall(3, () => {
-      c.from(
-        titleLines,
-        {
-          yPercent: prefersReducedMotion() ? 0 : 40,
-          opacity: 0,
-          stagger: 0.15,
-          ease: "back.out(4)",
-          duration: 0.6,
-          clearProps: "all",
-        },
-        ">-=1"
-      );
-    });
+  initHomeVideo();
 }
 function resetWebflow(e) {
   let t = new DOMParser()
@@ -1261,7 +1166,56 @@ function initCardsIntro(e) {
   });
 }
 function initCardsHover() {
- 
+  document.querySelectorAll("[data-card]").forEach((e) => {
+    const t = e.style.zIndex || 0;
+    if (!0 === ("static" === e.getAttribute("data-card"))) return;
+    const o = e.querySelector("video"),
+      r = e.querySelector("img");
+    e.addEventListener("mouseenter", () => {
+      (e.style.zIndex = 2),
+        gsap.to(e, {
+          scale: prefersReducedMotion() ? 1 : 1.15,
+          rotate: prefersReducedMotion() ? 0 : 16 * Math.random() - 8,
+          duration: 0.6,
+          ease: CustomEase.create(
+            "guides-bounce",
+            "M0,0 C0.084,0.61 0.202,0.898 0.327,0.977 0.555,1.121 0.661,0.92 1,1 "
+          ),
+        }),
+        supportsTouch() ||
+          (gsap.to(r, { opacity: 0, duration: 0.2, ease: "power2" }),
+          gsap.to(o, {
+            opacity: 1,
+            duration: 0.2,
+            ease: "power2",
+            onComplete: () => {
+              o.play();
+            },
+          }));
+    }),
+      e.addEventListener("mouseleave", () => {
+        (e.style.zIndex = t),
+          gsap.to(e, {
+            scale: 1,
+            rotate: prefersReducedMotion() ? 0 : 6 * Math.random() - 3,
+            duration: 0.6,
+            ease: CustomEase.create(
+              "guides-bounce",
+              "M0,0 C0.084,0.61 0.202,0.898 0.327,0.977 0.555,1.121 0.661,0.92 1,1 "
+            ),
+          }),
+          supportsTouch() ||
+            (gsap.to(r, { opacity: 1, duration: 0.2, ease: "power2" }),
+            gsap.to(o, {
+              opacity: 0,
+              duration: 0.2,
+              ease: "power2",
+              onComplete: () => {
+                o.pause();
+              },
+            }));
+      });
+  });
 }
 function initHomeParallax() {
   const e = document.querySelector('[data-parallax="trigger"]'),
