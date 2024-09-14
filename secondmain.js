@@ -4,7 +4,26 @@
  *
  * Do NOT use SRI with dynamically generated files! More information: https://www.jsdelivr.com/using-sri-with-dynamic-files
  */
-
+gsap.registerPlugin(ScrollTrigger, CustomEase);
+const timestamps = [0, 1.5, 3, 4.5, 6, 7.5, 9, 10.5, 12, 13.5];
+let lenis;
+void 0 === Webflow.env("editor") &&
+  ((lenis = new Lenis()),
+  $("[data-lenis-start]").on("click", function () {
+    lenis.start();
+  }),
+  $("[data-lenis-stop]").on("click", function () {
+    lenis.stop();
+  }),
+  $("[data-lenis-toggle]").on("click", function () {
+    $(this).toggleClass("stop-scroll"),
+      $(this).hasClass("stop-scroll") ? lenis.stop() : lenis.start();
+  }),
+  lenis.on("scroll", ScrollTrigger.update),
+  gsap.ticker.add((e) => {
+    lenis.raf(1e3 * e);
+  }),
+  gsap.ticker.lagSmoothing(0));
 const isMobile = window.innerWidth < 480,
   isMobileLandscape = window.innerWidth < 768,
   isDesktop = window.innerWidth > 991,
@@ -117,7 +136,102 @@ function transitionIn(e, t) {
       }));
 }
 function initHomeLoader() {
-  initHomeVideo();
+  if (!0 === ranHomeLoader) return;
+  let e = document.body,
+    t = document.querySelector(".main-w"),
+    o = loadWrap.querySelector(".load-progress"),
+    r = loadWrap.querySelector(".load-logo"),
+    a = loadWrap.querySelector(".load-bar"),
+    n = document.querySelector("header"),
+    i = n.querySelector("[data-header-title]"),
+    l = n.querySelectorAll("[data-header-fade]");
+  new SplitType("[data-header-title]", { types: "lines" });
+  setTimeout(() => {
+    titleLines = i.querySelectorAll(".line");
+  }, 1e3);
+  let s = lottie.loadAnimation({
+    container: r,
+    renderer: "svg",
+    loop: !1,
+    autoplay: !1,
+    path: r.getAttribute("data-animation-path"),
+  });
+  t.classList.add("is--transitioning"),
+    navW.setAttribute("theme", "light"),
+    gsap.set(e, { cursor: "wait" }),
+    gsap.set(a, { display: "flex" }),
+    gsap.set(loadBg, { transformOrigin: "50% 0%" });
+  let c = gsap.timeline();
+  c
+    .to(o, {
+      width: "100%",
+      duration: 4,
+      delay: 0.3,
+      ease: "power3.inOut",
+      onStart: () => {
+        s.play();
+      },
+    })
+    .to(a, { scaleX: 0, duration: 0.4, delay: 0.1, ease: "power3.in" })
+    .to(r, { opacity: 0, duration: 0.4, delay: 0.2, ease: "power3.in" }, "<")
+    .to(
+      loadBg,
+      {
+        scaleY: 0,
+        borderRadius: "0px 0px 100vw 100vw",
+        ease: "expo.inOut",
+        duration: 1.4,
+        onComplete: () => {
+          gsap.set(e, { cursor: "default" }),
+            gsap.set(loadWrap, { display: "none" }),
+            lenis.start(),
+            t.classList.remove("is--transitioning"),
+            ScrollTrigger.refresh(),
+            (ranHomeLoader = !0),
+            localStorage.setItem("loaderShown", "true");
+        },
+        onStart: () => {
+          initHomeVideo();
+        },
+      },
+      4.3
+    )
+    .from(
+      t,
+      {
+        yPercent: prefersReducedMotion() ? 0 : 10,
+        duration: 1.6,
+        ease: "expo.inOut",
+        clearProps: "all",
+      },
+      "<"
+    )
+    .from(
+      l,
+      {
+        yPercent: prefersReducedMotion() ? 0 : 40,
+        opacity: 0,
+        stagger: 0.15,
+        ease: "back.out(4)",
+        clearProps: "all",
+        duration: 0.6,
+      },
+      "<+=1"
+    ),
+    gsap.delayedCall(3, () => {
+      c.from(
+        titleLines,
+        {
+          yPercent: prefersReducedMotion() ? 0 : 40,
+          opacity: 0,
+          stagger: 0.15,
+          ease: "back.out(4)",
+          duration: 0.6,
+          clearProps: "all",
+        },
+        ">-=1"
+      );
+    });
 }
 function resetWebflow(e) {
   let t = new DOMParser()
@@ -196,7 +310,24 @@ function initCursorAndButtons(e) {
       (s = r),
       requestAnimationFrame(e);
   })(),
-
+    document.addEventListener("mousemove", (e) => {
+      (o = e.clientX), (r = e.clientY);
+    }),
+    document.querySelectorAll("[data-cursor]").forEach((e) => {
+      e.addEventListener("mouseenter", function () {
+        const e = document.querySelector(".cursor-item");
+        e && (e.style.display = "flex");
+        const t = this.getAttribute("data-cursor");
+        if (t) {
+          const e = document.querySelector("[data-cursor-text]");
+          e && (e.textContent = t);
+        }
+      }),
+        e.addEventListener("mouseleave", function () {
+          const e = document.querySelector(".cursor-item");
+          e && (e.style.display = "");
+        });
+    }),
     e.querySelectorAll(".button").forEach((e) => {
       prefersReducedMotion() ||
         e.addEventListener("mouseenter", function () {
@@ -232,7 +363,18 @@ function initCursorAndButtons(e) {
     });
 }
 function initToolTips() {
-
+  const e = document.querySelectorAll(".tooltip-w");
+  e &&
+    e.forEach((e) => {
+      e.addEventListener("mouseenter", () => {
+        const t = e.querySelector(".tooltip");
+        t && t.classList.add("active");
+      }),
+        e.addEventListener("mouseleave", () => {
+          const t = e.querySelector(".tooltip");
+          t && t.classList.remove("active");
+        });
+    });
 }
 function initHomeVideo() {
   let e;
@@ -1419,8 +1561,26 @@ function initPriceCards(e) {
       0
     ),
     i.forEach((e) => {
-   
-     
+      e.addEventListener("mouseenter", () => {
+        i.forEach((e) => e.classList.remove("is--active")),
+          e.classList.add("is--active"),
+          gsap.to(e, {
+            scale: prefersReducedMotion() ? 1 : 1.1,
+            duration: 0.3,
+            ease: "back.out(1.8)",
+            overwrite: "auto",
+          });
+      }),
+        e.addEventListener("mouseleave", () => {
+          e.classList.remove("is--active"),
+            a.classList.add("is--active"),
+            gsap.to(e, {
+              scale: 1,
+              duration: 0.3,
+              ease: "back.out(1.5)",
+              overwrite: "auto",
+            });
+        });
     });
   const c = e.querySelector("[data-price-solo]"),
     d = e.querySelector("[data-price-joint]"),
@@ -1478,7 +1638,7 @@ function initGuidesSlider() {
     speed: 600,
     effect: "creative",
     keyboard: { enabled: !0, onlyInViewport: !1 },
-   
+    mousewheel: { invert: !1 },
     creativeEffect: {
       prev: { shadow: !1, translate: [0, 0, -80], rotate: [0, 0, -3] },
       next: { translate: ["105%", 0, 1] },
@@ -1537,8 +1697,30 @@ function initGuideCardsHover() {
   document.querySelectorAll("[data-card]").forEach((e) => {
     const t = e.style.zIndex || 0,
       o = e.querySelector(".card-inner");
- 
-  
+    e.addEventListener("mouseenter", () => {
+      (e.style.zIndex = 2),
+        gsap.to(o, {
+          scale: prefersReducedMotion() ? 1 : 1.1,
+          rotate: prefersReducedMotion() ? 0 : 16 * Math.random() - 8,
+          duration: 0.6,
+          ease: CustomEase.create(
+            "guides-bounce",
+            "M0,0 C0.084,0.61 0.202,0.898 0.327,0.977 0.555,1.121 0.661,0.92 1,1 "
+          ),
+        });
+    }),
+      e.addEventListener("mouseleave", () => {
+        (e.style.zIndex = t),
+          gsap.to(o, {
+            scale: 1,
+            rotate: prefersReducedMotion() ? 0 : 6 * Math.random() - 3,
+            duration: 0.6,
+            ease: CustomEase.create(
+              "guides-bounce",
+              "M0,0 C0.084,0.61 0.202,0.898 0.327,0.977 0.555,1.121 0.661,0.92 1,1 "
+            ),
+          });
+      });
   });
 }
 function initColorChanges() {
