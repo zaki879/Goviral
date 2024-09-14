@@ -1896,7 +1896,7 @@ function initSaveInvest(e) {
   initColorChanges(),
     initVideoScroll(e),
     initInvestCards(),
-    initScrollingTitles(e),
+ 
     initStackSaveAnimations(e),
     setTimeout(() => {
       initStackInvestAnimations(e);
