@@ -1661,30 +1661,8 @@ function initGuideCardsHover() {
   document.querySelectorAll("[data-card]").forEach((e) => {
     const t = e.style.zIndex || 0,
       o = e.querySelector(".card-inner");
-    e.addEventListener("mouseenter", () => {
-      (e.style.zIndex = 2),
-        gsap.to(o, {
-          scale: prefersReducedMotion() ? 1 : 1.1,
-          rotate: prefersReducedMotion() ? 0 : 16 * Math.random() - 8,
-          duration: 0.6,
-          ease: CustomEase.create(
-            "guides-bounce",
-            "M0,0 C0.084,0.61 0.202,0.898 0.327,0.977 0.555,1.121 0.661,0.92 1,1 "
-          ),
-        });
-    }),
-      e.addEventListener("mouseleave", () => {
-        (e.style.zIndex = t),
-          gsap.to(o, {
-            scale: 1,
-            rotate: prefersReducedMotion() ? 0 : 6 * Math.random() - 3,
-            duration: 0.6,
-            ease: CustomEase.create(
-              "guides-bounce",
-              "M0,0 C0.084,0.61 0.202,0.898 0.327,0.977 0.555,1.121 0.661,0.92 1,1 "
-            ),
-          });
-      });
+ 
+  
   });
 }
 function initColorChanges() {
