@@ -1437,9 +1437,9 @@
       Fr = {},
       Dr = [],
       Hs = window.Webflow || [],
-      Yt = window.jQuery,
-      pt = Yt(window),
-      sC = Yt(document),
+    
+      pt = window,
+      sC = document,
       It = Yt.isFunction,
       ft = (pe._ = rc()),
       ic = (pe.tram = Gs() && Yt.tram),
