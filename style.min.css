@@ -2250,7 +2250,7 @@ textarea.w-select {
 }
 
 body {
-    background-color: inherit !important;
+    background-color: transparent !important;
     color: var(--color--black);
     font-family: PP Neue Montreal, sans-serif;
     font-size: 14px;
@@ -2330,7 +2330,7 @@ a {
 
 .section {
     z-index: 1;
-    background-color: inherit !important;
+    background-color: transparent !important;
     position: relative
 }
 
