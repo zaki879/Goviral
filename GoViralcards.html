@@ -991,19 +991,7 @@
   <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
 
  
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const noScrollElement = document.getElementById('no-scroll-element');
-
-      const preventScroll = (event) => {
-        event.preventDefault(); // Prevent the default scroll behavior
-        event.stopPropagation(); // Stop the event from bubbling up
-      };
-
-      noScrollElement.addEventListener('wheel', preventScroll, { passive: false });
-      noScrollElement.addEventListener('touchmove', preventScroll, { passive: false });
-    });
-  </script>
+  
 </body>
 
 </html>
