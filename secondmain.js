@@ -1619,7 +1619,6 @@ function initGuidesSlider() {
     speed: 600,
     effect: "creative",
     keyboard: { enabled: !0, onlyInViewport: !1 },
-    mousewheel: { invert: !1 },
     creativeEffect: {
       prev: { shadow: !1, translate: [0, 0, -80], rotate: [0, 0, -3] },
       next: { translate: ["105%", 0, 1] },

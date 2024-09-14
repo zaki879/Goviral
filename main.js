@@ -1509,10 +1509,7 @@
       hC = (pe.env.ios = /(ipod|iphone|ipad)/.test(Mi));
     pe.env.safari = /safari/.test(Mi) && !uC && !hC;
     var zs;
-    oc &&
-      sC.on("touchstart mousedown", function (e) {
-        zs = e.target;
-      });
+    oc 
     pe.validClick = oc
       ? function (e) {
           return e === zs || Yt.contains(e, zs);
@@ -24848,36 +24845,16 @@
             document.visibilityState === "hidden" && (i && (n = !0), h());
           }
           function h() {
-            document.addEventListener("mousemove", y),
-              document.addEventListener("mousedown", y),
-              document.addEventListener("mouseup", y),
-              document.addEventListener("pointermove", y),
-              document.addEventListener("pointerdown", y),
-              document.addEventListener("pointerup", y),
-              document.addEventListener("touchmove", y),
-              document.addEventListener("touchstart", y),
-              document.addEventListener("touchend", y);
+       
           }
           function v() {
-            document.removeEventListener("mousemove", y),
-              document.removeEventListener("mousedown", y),
-              document.removeEventListener("mouseup", y),
-              document.removeEventListener("pointermove", y),
-              document.removeEventListener("pointerdown", y),
-              document.removeEventListener("pointerup", y),
-              document.removeEventListener("touchmove", y),
-              document.removeEventListener("touchstart", y),
-              document.removeEventListener("touchend", y);
+        
           }
           function y(b) {
             (b.target.nodeName && b.target.nodeName.toLowerCase() === "html") ||
               ((n = !1), v());
           }
-          document.addEventListener("keydown", f, !0),
-            document.addEventListener("mousedown", m, !0),
-            document.addEventListener("pointerdown", m, !0),
-            document.addEventListener("touchstart", m, !0),
-            document.addEventListener("visibilitychange", g, !0),
+       
             h(),
             r.addEventListener("focus", d, !0),
             r.addEventListener("blur", p, !0);
@@ -24938,9 +24915,7 @@
           typeof document < "u" &&
             document.body.hasAttribute("data-wf-focus-within") &&
             KS.env.safari &&
-            (document.addEventListener("mousedown", i, !0),
-            document.addEventListener("mouseup", r, !0),
-            document.addEventListener("click", r, !0));
+            document.addEventListener("click", r, !0)
         }
         return { ready: a };
       })
@@ -30015,8 +29990,6 @@
               })
             ),
           },
-          [AQ]: { ...Ai, types: "mousedown" },
-          [PQ]: { ...Ai, types: "mouseup" },
           [CQ]: {
             types: $A,
             handler: St(
@@ -31179,7 +31152,6 @@
             a.addEventListener("touchmove", m, !1),
             a.addEventListener("touchend", d, !1),
             a.addEventListener("touchcancel", p, !1),
-            a.addEventListener("mousedown", f, !1),
             a.addEventListener("mousemove", m, !1),
             a.addEventListener("mouseup", d, !1),
             a.addEventListener("mouseout", p, !1);
@@ -31216,15 +31188,7 @@
             s = !1;
           }
           function g() {
-            a.removeEventListener("touchstart", f, !1),
-              a.removeEventListener("touchmove", m, !1),
-              a.removeEventListener("touchend", d, !1),
-              a.removeEventListener("touchcancel", p, !1),
-              a.removeEventListener("mousedown", f, !1),
-              a.removeEventListener("mousemove", m, !1),
-              a.removeEventListener("mouseup", d, !1),
-              a.removeEventListener("mouseout", p, !1),
-              (a = null);
+          
           }
           this.destroy = g;
         }
