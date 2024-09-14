@@ -1854,7 +1854,7 @@ function initGeneral(e) {
   initSplitText(e),
    
 
-    initCursorAndButtons(e),
+
     initToolTips(),
     initVideoControls(e),
     prefersReducedMotion() 
