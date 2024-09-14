@@ -110,6 +110,7 @@ function transitionIn(e, t) {
         duration: 1.2,
         ease: "expo.inOut",
         onComplete: () => {
+          gsap.set(loadWrap, { display: "none" });
         },
       }
     ),
