@@ -256,78 +256,8 @@ function resetLottieAnimations(e) {
 function initBurgerMenu() {
  
 }
-function initNavScroll() {
-  const e = document.querySelectorAll("[data-nav-fade]");
-  let t = 0;
-  let o = document.querySelector(".dd-toggle");
-  dropdownClick ||
-    o.addEventListener("click", function () {
-      dropdownOpen = !dropdownOpen;
-    }),
-    window.addEventListener(
-      "scroll",
-      () => {
-        let r = window.scrollY || document.documentElement.scrollTop;
-        Math.abs(r - t) > 25 &&
-          (dropdownOpen && o.click(),
-          r > t
-            ? gsap.to(e, {
-                autoAlpha: 0,
-                y: "-75%",
-                stagger: 0.05,
-                ease: "power3",
-                overwrite: "auto",
-              })
-            : gsap.to(e, {
-                autoAlpha: 1,
-                y: "0%",
-                stagger: 0.05,
-                ease: "power3",
-                overwrite: "auto",
-                stagger: { each: 0.03, from: "end" },
-              }),
-          (t = r <= 0 ? 0 : r));
-      },
-      { passive: !0 }
-    );
-}
-function initDocumentClick() {
-  if (!0 === generalFlag) return;
-  let e = document.querySelectorAll(".dd-link"),
-    t = document.querySelector(".dd-toggle");
-  e.forEach((e) => {
-    e.addEventListener("click", function () {
-      t.click();
-    });
-  }),
-    document.addEventListener("click", function (e) {
-      if (((generalFlag = !0), e.target.classList.contains("lottie-player")))
-        return;
-      const t = Math.floor(Math.random() * lottieAnimations.length),
-        o = lottieAnimations[t],
-        r = document.createElement("div");
-      (r.style.position = "absolute"),
-        (r.style.width = "180px"),
-        (r.style.height = "180px"),
-        (r.style.left = e.pageX - 90 + "px"),
-        (r.style.top = e.pageY - 90 + "px"),
-        (r.style.zIndex = "9999"),
-        (r.style.pointerEvents = "none");
-      const a = Math.floor(360 * Math.random());
-      (r.style.transform = `rotate(${a}deg)`), document.body.appendChild(r);
-      lottie
-        .loadAnimation({
-          container: r,
-          renderer: "svg",
-          loop: !1,
-          autoplay: !0,
-          path: o,
-        })
-        .addEventListener("complete", function () {
-          r.remove();
-        });
-    });
-}
+
+
 function initCursorAndButtons(e) {
   !1 === generalFlag && (e = document.querySelector("body"));
   let t = document.querySelector(".cursor-item");
@@ -2061,15 +1991,12 @@ function initScrollingTitles(e) {
 function initGeneral(e) {
   initSplitText(e),
    
-    initNavScroll(),
+
     initCursorAndButtons(e),
     initToolTips(),
     initVideoControls(e),
-    prefersReducedMotion() ||
-      (initDocumentClick(),
-      setTimeout(() => {
-        initHeadlines(e);
-      }, 1e3));
+    prefersReducedMotion() 
+     
 }
 function initHome(e) {
   initHomeHero(e),
