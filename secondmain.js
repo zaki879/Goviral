@@ -52,7 +52,7 @@ function transitionOut(e) {
     gsap.fromTo(
       pageOverlay,
       { opacity: 0 },
-      { opacity: 1, duration: 1.2, ease: "expo.inOut" }
+      { opacity: 1, duration: 0, ease: "expo.inOut" }
     );
 }
 function transitionIn(e, t) {
@@ -87,7 +87,7 @@ function transitionIn(e, t) {
       {
         scaleY: 0,
         borderRadius: "0px 0px 100vw 100vw",
-        duration: 1.2,
+        duration: 0,
         ease: "expo.inOut",
         onComplete: () => {
           gsap.set(loadWrap, { display: "none" });
