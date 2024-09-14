@@ -792,30 +792,7 @@ function initNavToggle() {
     },
   });
 }
-function initHomeHero(e) {
-  if (prefersReducedMotion()) return;
-  let t, o, r;
-  e || (e = document.querySelector('[data-barba="container"]')),
-    e.querySelector(".full-hero__bg") && (t = !0);
-  let a = e.querySelector('[data-home-hero="trigger"]'),
-    n = a.querySelector('[data-home-hero="bg"]');
-  t &&
-    ((o = e.querySelector(".full-hero__fern")),
-    (r = e.querySelector(".full-hero__orange"))),
-    gsap
-      .timeline({
-        scrollTrigger: {
-          trigger: a,
-          start: isMobile ? "bottom 85%" : "bottom bottom",
-          end: "bottom center",
-          scrub: !0,
-        },
-      })
-      .to(a, { scale: 0.95 }, 0)
-      .from(n, { borderRadius: "0rem, 0rem, 0rem, 0rem" }, 0)
-      .to(o, { yPercent: -5, xPercent: -5 }, 0)
-      .to(r, { yPercent: 5 }, 0);
-}
+
 function initGuidesOverlay(e) {
   e || (e = document.querySelector('[data-barba="container"]'));
   const t = e.querySelectorAll("[data-overlay-open]"),
@@ -1999,7 +1976,7 @@ function initGeneral(e) {
      
 }
 function initHome(e) {
-  initHomeHero(e),
+
     initNavToggle(),
     initHomeSliders(e),
     isMobile && initMobileSliders(),
