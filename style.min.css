@@ -7174,9 +7174,9 @@ iframe{
         display: flex
     }
 
-    .p-med {
-        font-size: 1rem
-    }
+        .p-med {
+            font-size: 1rem
+        }
 
     .home-hero__inner.pointer-off {
         padding-bottom: 6rem
