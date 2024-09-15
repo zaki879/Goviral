@@ -5146,15 +5146,15 @@ iframe{
 }
 
 .s-card__icon.is--orange {
-    background-color: #945252
+    background-color: #000
 }
 
 .s-card__icon.is--grey {
-    background-color: #000
+    background-color: #b5cdd1
 }
 
 .s-card__icon.is--yellow {
-    background-color: #000
+    background-color: #b5cdd1
 }
 
 .s-card__small {
