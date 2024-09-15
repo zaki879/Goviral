@@ -301,7 +301,7 @@ html.w-mod-touch * {
 }
 
 .w-button {
-    color: #fff;
+    color: #FDFDFC;
     line-height: inherit;
     cursor: pointer;
     background-color: #3898ec;
@@ -566,7 +566,7 @@ label {
 .w-select {
     color: #333;
     vertical-align: middle;
-    background-color: #fff;
+    background-color: #FDFDFC;
     border: 1px solid #ccc;
     width: 100%;
     height: 38px;
@@ -1122,7 +1122,7 @@ textarea.w-select {
 .w-widget-twitter-count-shim {
     vertical-align: top;
     text-align: center;
-    background: #fff;
+    background: #FDFDFC;
     border: 1px solid #758696;
     border-radius: 3px;
     width: 28px;
@@ -1198,7 +1198,7 @@ textarea.w-select {
 
 .w-widget-twitter-count-shim:not(.w--vertical):after {
     border-width: 4px;
-    border-color: rgba(255, 255, 255, 0) #fff rgba(255, 255, 255, 0) rgba(255, 255, 255, 0);
+    border-color: rgba(255, 255, 255, 0) #FDFDFC rgba(255, 255, 255, 0) rgba(255, 255, 255, 0);
     margin-top: -4px;
     margin-left: -8px
 }
@@ -1235,7 +1235,7 @@ textarea.w-select {
 
 .w-widget-twitter-count-shim.w--vertical:after {
     border-width: 4px;
-    border-color: #fff rgba(255, 255, 255, 0) rgba(255, 255, 255, 0);
+    border-color: #FDFDFC rgba(255, 255, 255, 0) rgba(255, 255, 255, 0);
     margin-left: -4px
 }
 
@@ -1249,7 +1249,7 @@ textarea.w-select {
 }
 
 .w-background-video {
-    color: #fff;
+    color: #FDFDFC;
     height: 500px;
     position: relative;
     overflow: hidden
@@ -1350,7 +1350,7 @@ textarea.w-select {
 }
 
 .w-slider-nav-invert {
-    color: #fff
+    color: #FDFDFC
 }
 
 .w-slider-nav-invert>div {
@@ -1373,12 +1373,12 @@ textarea.w-select {
 }
 
 .w-slider-dot.w-active {
-    background-color: #fff
+    background-color: #FDFDFC
 }
 
 .w-slider-dot:focus {
     outline: none;
-    box-shadow: 0 0 0 2px #fff
+    box-shadow: 0 0 0 2px #FDFDFC
 }
 
 .w-slider-dot:focus.w-active {
@@ -1388,7 +1388,7 @@ textarea.w-select {
 .w-slider-arrow-left,
 .w-slider-arrow-right {
     cursor: pointer;
-    color: #fff;
+    color: #FDFDFC;
     -webkit-tap-highlight-color: transparent;
     tap-highlight-color: transparent;
     -webkit-user-select: none;
@@ -1541,7 +1541,7 @@ textarea.w-select {
     word-break: normal;
     word-spacing: normal;
     word-wrap: normal;
-    color: #fff;
+    color: #FDFDFC;
     text-align: center;
     z-index: 2000;
     opacity: 0;
@@ -1748,7 +1748,7 @@ textarea.w-select {
 .w-lightbox-spinner:after {
     content: "";
     border: 3px solid transparent;
-    border-bottom-color: #fff;
+    border-bottom-color: #FDFDFC;
     border-radius: 50%;
     position: absolute;
     top: -4px;
@@ -2072,7 +2072,7 @@ textarea.w-select {
 }
 
 .w-nav-button.w--open {
-    color: #fff;
+    color: #FDFDFC;
     background-color: #c8c8c8
 }
 
@@ -2222,10 +2222,10 @@ textarea.w-select {
 }
 
 :root {
-    --color--white: white;
-    --color--black: black;
+    --color--white: #FDFDFC;
+    --color--black: #040404;
     --radius--desktop: 1.25rem;
-    --color--green-900: #054f31;
+    --color--green-900: #12646F;
     --color--peach: #b6cad1;
     --color--green-100: #d9ffe0;
     --color--orange-100: #fef0c7;
@@ -3464,7 +3464,7 @@ iframe{
 }
 
 .scroll-w {
-    background-image: linear-gradient(#9dd1e9, #fff);
+    background-image: linear-gradient(#9dd1e9, #FDFDFC);
     border-top-left-radius: 2.5rem;
     border-top-right-radius: 2.5rem;
     position: absolute;
@@ -4058,7 +4058,7 @@ iframe{
     border-radius: var(--radius--desktop);
     color: var(--color--black);
     background-color: #f9fafb;
-    border: 1px solid #fff;
+    border: 1px solid #FDFDFC;
     width: 100%;
     height: 3.75rem;
     margin-bottom: 0;
@@ -7209,7 +7209,7 @@ iframe{
     }
 
     .button.is--menu {
-        background-color: white;
+        background-color: #FDFDFC;
         color: var(--color--white);
         width: 100%
     }
@@ -7655,7 +7655,7 @@ iframe{
         border-top-right-radius: var(--radius--desktop);
         border-bottom-left-radius: var(--radius--desktop);
         border-bottom-right-radius: var(--radius--desktop);
-        background-color: white;
+        background-color: #FDFDFC;
         width: 1rem;
         height: 1px;
         padding: 0
@@ -8502,7 +8502,7 @@ iframe{
     }
 
     .overlay-nav {
-        background-image: linear-gradient(rgba(255, 255, 255, 0), #fff 35%, #fff);
+        background-image: linear-gradient(rgba(255, 255, 255, 0), #FDFDFC 35%, #FDFDFC);
         width: 100%;
         height: 9rem;
         margin-left: -.75rem;
