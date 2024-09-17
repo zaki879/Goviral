@@ -47,7 +47,7 @@ function prefersReducedMotion() {
 }
 function transitionOut(e) {
   gsap.set(loadWrap, { display: "flex" }),
-    gsap.set(loadBg, { transformOrigin: "100% 100%" }),
+    
     gsap.to(e, { y: "0vh", duration: 0, ease: "expo.inOut" }),
     gsap.fromTo(
       pageOverlay,
@@ -69,7 +69,7 @@ function transitionIn(e, t) {
   new SplitType("[data-header-title]", { types: "lines" });
   setTimeout(() => {
   }, 400),
-    gsap.set(loadBg, { transformOrigin: "100% 100%" }),
+
     gsap.fromTo(
       pageOverlay,
       { opacity: 1 },
@@ -120,7 +120,7 @@ function initHomeLoader() {
   let e = document.body,
     t = document.querySelector(".main-w"),
     o = loadWrap.querySelector(".load-progress"),
-    r = loadWrap.querySelector(".load-logo"),
+
     a = loadWrap.querySelector(".load-bar"),
     n = document.querySelector("header"),
     i = n.querySelector("[data-header-title]"),
@@ -129,13 +129,7 @@ function initHomeLoader() {
   setTimeout(() => {
     titleLines = i.querySelectorAll(".line");
   }, 1e3);
-  let s = lottie.loadAnimation({
-    container: r,
-    renderer: "svg",
-    loop: !1,
-    autoplay: !1,
-    path: r.getAttribute("data-animation-path"),
-  });
+
   t.classList.add("is--transitioning"),
     navW.setAttribute("theme", "light"),
     gsap.set(e, { cursor: "wait" }),
@@ -153,7 +147,7 @@ function initHomeLoader() {
       },
     })
     .to(a, { scaleX: 0, duration: 0.4, delay: 0.1, ease: "power3.in" })
-    .to(r, { opacity: 0, duration: 0.4, delay: 0.2, ease: "power3.in" }, "<")
+   
     .to(
       loadBg,
       {
@@ -1932,7 +1926,7 @@ window.addEventListener("resize", handleResize),
         afterEnter(e) {
           let t = e.next.container,
             o = e.next.namespace;
-      
+      !0 === ranHomeLoader ||
           localStorage.getItem("loaderShown") ||
           t.hasAttribute("data-no-loader")
             ? transitionIn(t, o)
