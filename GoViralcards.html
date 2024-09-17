@@ -13,7 +13,7 @@
 </head>
 
 <body data-barba="wrapper" >
-  <div class="page-w">
+  <div class="page-w" style="height: 500vh;">
  
     <nav theme="light" class="nav-w">
       <div class="main-c u--rel">
@@ -890,7 +890,52 @@
   <script src="https://zaki879.github.io/Goviral/secondmain.js"></script>
   <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
 
- 
+ <script>
+  // Variables to store scroll state
+let scrollPosition = window.scrollY;  // Initial scroll position
+let isScrolling = false;              // Flag to track scrolling state
+
+// Event listener for the wheel event
+window.addEventListener('wheel', (event) => {
+    // Prevent the default scrolling behavior
+    event.preventDefault();
+
+    // Increment scroll position based on the wheel delta
+    scrollPosition += event.deltaY * 0.5;  // Adjust the multiplier to control scroll speed
+
+    // Clamp the scroll position to prevent over-scrolling
+    scrollPosition = Math.max(0, Math.min(scrollPosition, document.body.scrollHeight - window.innerHeight));
+
+    // Start smooth scrolling
+    if (!isScrolling) {
+        smoothScroll();
+    }
+});
+
+// Smooth scroll function
+function smoothScroll() {
+    isScrolling = true;
+
+    // Calculate the difference between the current scroll position and the target scroll position
+    const difference = scrollPosition - window.scrollY;
+
+    // Set a scroll speed factor
+    const scrollSpeed = 0.1;  // Adjust for smoother or quicker scroll
+
+    // Increment the scroll position by a fraction of the difference
+    window.scrollBy(0, difference * scrollSpeed);
+
+    // Check if the scrolling has reached near the target position
+    if (Math.abs(difference) > 0.5) {
+        // Continue scrolling using requestAnimationFrame for smoothness
+        requestAnimationFrame(smoothScroll);
+    } else {
+        // End the smooth scroll loop
+        isScrolling = false;
+    }
+}
+
+ </script>
  
 </body>
 

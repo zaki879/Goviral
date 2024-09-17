@@ -99,7 +99,7 @@ img {
 }
 
 svg:not(:root) {
-    overflow: hidden
+    
 }
 
 hr {
@@ -671,7 +671,7 @@ textarea.w-select {
     width: .1px;
     height: .1px;
     position: absolute;
-    overflow: hidden
+    
 }
 
 .w-file-upload-default,
@@ -1116,7 +1116,7 @@ textarea.w-select {
 }
 
 .w-widget-twitter {
-    overflow: hidden
+    
 }
 
 .w-widget-twitter-count-shim {
@@ -1252,7 +1252,7 @@ textarea.w-select {
     color: #FDFDFC;
     height: 500px;
     position: relative;
-    overflow: hidden
+    
 }
 
 .w-background-video>video {
@@ -1305,7 +1305,7 @@ textarea.w-select {
     position: relative;
     left: 0;
     right: 0;
-    overflow: hidden
+    
 }
 
 .w-slide {
@@ -1402,7 +1402,7 @@ textarea.w-select {
     bottom: 0;
     left: 0;
     right: 0;
-    overflow: hidden
+    
 }
 
 .w-slider-arrow-left [class^=w-icon-],
@@ -1446,7 +1446,7 @@ textarea.w-select {
     margin: -1px;
     padding: 0;
     position: absolute;
-    overflow: hidden
+    
 }
 
 .w-slider-force-show {
@@ -1573,7 +1573,7 @@ textarea.w-select {
 .w-lightbox-content {
     height: 100vh;
     position: relative;
-    overflow: hidden
+    
 }
 
 .w-lightbox-view {
@@ -1636,7 +1636,7 @@ textarea.w-select {
     bottom: 0;
     left: 0;
     right: 0;
-    overflow: hidden
+    
 }
 
 .w-lightbox-embed {
@@ -1710,7 +1710,7 @@ textarea.w-select {
     background: #222;
     height: 10vh;
     position: relative;
-    overflow: hidden
+    
 }
 
 .w-lightbox-thumbnail-image {
@@ -1762,7 +1762,7 @@ textarea.w-select {
 }
 
 .w-lightbox-noscroll {
-    overflow: hidden
+    
 }
 
 @media (min-width:768px) {
@@ -1830,7 +1830,7 @@ textarea.w-select {
 
 .w-richtext ol,
 .w-richtext ul {
-    overflow: hidden
+    
 }
 
 .w-richtext .w-richtext-figure-selected.w-richtext-figure-type-video div:after,
@@ -2024,7 +2024,7 @@ textarea.w-select {
     top: 100%;
     left: 0;
     right: 0;
-    overflow: hidden
+    
 }
 
 .w-nav-overlay [data-nav-menu-open] {
@@ -2166,7 +2166,7 @@ textarea.w-select {
 .w-tab-content {
     display: block;
     position: relative;
-    overflow: hidden
+    
 }
 
 .w-tab-pane {
@@ -2324,7 +2324,7 @@ a {
 
 .main-w.is--transitioning {
     height: 100vh;
-    overflow: hidden
+    
 }
 
 .section {
@@ -2806,7 +2806,7 @@ a {
 }
 
 .style-guide__wrapper {
-    overflow: hidden
+    
 }
 
 .container {
@@ -2945,7 +2945,7 @@ iframe{
     align-items: center;
     display: flex;
     position: relative;
-    overflow: hidden
+    
 }
 
 .button.is--hero {
@@ -3340,13 +3340,13 @@ iframe{
     height: 33em;
     display: flex;
     position: relative;
-    overflow: hidden
+    
 }
 
 .hover-card__p {
     width: 100%;
     max-width: 23.75rem;
-    overflow: hidden
+    
 }
 
 .hover-card__title {
@@ -4166,7 +4166,7 @@ iframe{
 }
 
 .split-content__img.has--parallax {
-    overflow: hidden
+    
 }
 
 .split-content__text {
@@ -4265,7 +4265,7 @@ iframe{
     padding-left: 3rem;
     padding-right: 3rem;
     position: relative;
-    overflow: hidden
+    
 }
 
 .faq-img {
@@ -4427,13 +4427,13 @@ iframe{
 
 .p-card__eyebrow {
     height: .9rem;
-    overflow: hidden
+    
 }
 
 .p-price__wrap {
     height: 4.5em;
     position: relative;
-    overflow: hidden
+    
 }
 
 .p-price__wrap.is-wide {
@@ -4486,7 +4486,7 @@ iframe{
     position: absolute;
     bottom: -.5rem;
     left: 50%;
-    overflow: hidden;
+    ;
     transform: translate(-50%, 100%);
     margin-left: 5vw;
 }
@@ -4545,7 +4545,7 @@ iframe{
     border-radius: var(--radius--desktop);
     height: 38em;
     position: relative;
-    overflow: hidden
+    
 }
 
 .o--40 {
@@ -4594,7 +4594,7 @@ iframe{
     border-radius: var(--radius--desktop);
     height: 100%;
     position: relative;
-    overflow: hidden
+    
 }
 
 .track-text__item {
@@ -4767,7 +4767,7 @@ iframe{
     width: 100%;
     margin-bottom: 1.25rem;
     position: relative;
-    overflow: hidden
+    
 }
 
 .spruce-bg {
@@ -4904,7 +4904,7 @@ iframe{
     border-radius: var(--radius--desktop);
     width: 85vw;
     position: relative;
-    overflow: hidden
+    
 }
 
 .modal-vid__wrap {
@@ -5263,7 +5263,7 @@ iframe{
     max-width: 55em;
     padding: .75rem;
     position: relative;
-    overflow: hidden;
+    ;
     box-shadow: 0 0 rgba(0, 0, 0, .1), 0 5px 10px rgba(0, 0, 0, .1), 0 20px 20px rgba(0, 0, 0, .09)
 }
 
@@ -5312,7 +5312,7 @@ iframe{
     width: 100%;
     height: 100%;
     position: relative;
-    overflow: hidden
+    
 }
 
 .overlay-item__text {
@@ -5544,7 +5544,7 @@ iframe{
     margin-left: 0;
     margin-right: 0;
     position: relative;
-    overflow: hidden;
+    ;
     box-shadow: 0 25px 16px rgba(0, 0, 0, .05), 0 10px 10px rgba(0, 0, 0, .1), 0 3px 6px rgba(0, 0, 0, .1)
 }
 
@@ -5755,7 +5755,7 @@ iframe{
     position: absolute;
     top: 0;
     right: 0;
-    overflow: hidden;
+    ;
     box-shadow: 0 6px 6px rgba(0, 0, 0, .1), 0 10px 20px rgba(0, 0, 0, .08), 0 2px 4px rgba(0, 0, 0, .1)
 }
 
@@ -5781,7 +5781,7 @@ iframe{
     bottom: 0%;
     left: 0%;
     right: 0%;
-    overflow: hidden
+    
 }
 
 .invest-left {
@@ -5800,7 +5800,7 @@ iframe{
     position: absolute;
     bottom: 0;
     left: 0;
-    overflow: hidden;
+    ;
     box-shadow: 0 12px 7px rgba(0, 0, 0, .03), 0 6px 6px rgba(0, 0, 0, .04), 0 1px 3px rgba(0, 0, 0, .05)
 }
 
@@ -5810,7 +5810,7 @@ iframe{
     border: 2px solid #d6dae1;
     width: 4.5rem;
     height: 4.5rem;
-    overflow: hidden
+    
 }
 
 .invest-left__bottom {
@@ -6459,7 +6459,7 @@ iframe{
     bottom: 0%;
     left: 0%;
     right: 0%;
-    overflow: hidden
+    
 }
 
 .p-card__fern {
@@ -6872,7 +6872,7 @@ iframe{
 
     .modal-vid__wrap {
         border-radius: var(--radius--desktop);
-        overflow: hidden
+        
     }
 
     .modal-close {
@@ -7705,7 +7705,7 @@ iframe{
         flex-direction: column;
         display: flex;
         position: relative;
-        overflow: hidden
+        
     }
 
     .menu-dd__link {
