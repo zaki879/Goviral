@@ -174,7 +174,7 @@ function initHomeLoader() {
           initHomeVideo();
         },
       },
-      0
+      0.5
     )
     .from(
       t,
