@@ -166,7 +166,7 @@ function initHomeLoader() {
             gsap.set(loadWrap, { display: "none" }),
             lenis.start(),
             t.classList.remove("is--transitioning"),
-            ScrollTrigger.refresh(),
+   
             (ranHomeLoader = !0),
             localStorage.setItem("loaderShown", "true");
         },
@@ -592,22 +592,7 @@ function initSplitText(e) {
   });
 }
 function initHeadlines(e) {
-  function t(e, t) {
-    ScrollTrigger.create({
-      trigger: e,
-      start: "top bottom",
-      onLeaveBack: () => {
-        t.progress(0), t.pause();
-      },
-    }),
-      ScrollTrigger.create({
-        trigger: e,
-        start: "top 80%",
-        onEnter: () => {
-          t.play();
-        },
-      });
-  }
+
   e || (e = document.querySelector('[data-barba="container"]')),
     document.querySelectorAll("[lines-slide-up]").forEach(function (e, o) {
       let r = gsap.timeline({ paused: !0 });
@@ -758,17 +743,7 @@ function initMobileSliders() {
     });
 }
 function initNavToggle() {
-  const e = document.querySelector("[data-nav-toggle]");
-  ScrollTrigger.create({
-    trigger: e,
-    start: "top top",
-    onEnter: () => {
-      navW.setAttribute("theme", "dark");
-    },
-    onLeaveBack: () => {
-      navW.setAttribute("theme", "light");
-    },
-  });
+
 }
 
 function initGuidesOverlay(e) {
@@ -1013,13 +988,7 @@ function initGoalsScroll(e) {
   let t = (e = e || document).querySelector(".goals-wrap"),
     o = t.querySelectorAll(".goals-card");
   gsap
-    .timeline({
-      scrollTrigger: {
-        trigger: t,
-        start: "top 80%",
-        toggleActions: "play none none reverse",
-      },
-    })
+    
     .from(o, {
       bottom: "40%",
       left: "42%",
@@ -1035,13 +1004,7 @@ function initGuidesCollage(e) {
   if (!t) return;
   let o = t.querySelectorAll(".g-card");
   gsap
-    .timeline({
-      scrollTrigger: {
-        trigger: t,
-        start: "top 80%",
-        toggleActions: "play none none reverse",
-      },
-    })
+    
     .from(o, {
       top: "30%",
       left: "42%",
@@ -1075,17 +1038,7 @@ function initHomeIntro() {
       path: i.getAttribute("data-lottie-path"),
     });
   gsap
-    .timeline({
-      scrollTrigger: {
-        trigger: e,
-        start: "bottom bottom",
-        toggleActions: "play none none reverse",
-      },
-      onReverseComplete: () => {
-        l.goToAndStop(0, !0), s.goToAndStop(0, !0);
-      },
-      defaults: { ease: "expo.inOut", duration: 1 },
-    })
+  
     .fromTo(
       o,
       { width: isDesktop ? "0.5em" : "0em" },
@@ -1142,15 +1095,7 @@ function initBushCTA(e) {
       path: i.getAttribute("data-lottie-path"),
     });
   gsap
-    .timeline({
-      scrollTrigger: {
-        trigger: t,
-        start: "top bottom",
-        end: "bottom top",
-        scrub: !0,
-      },
-      defaults: { ease: "linear", duration: 1 },
-    })
+ 
     .fromTo(a, { y: "5em", xPercent: -100 }, { y: "-1em", xPercent: 25 })
     .fromTo(
       n,
@@ -1159,22 +1104,7 @@ function initBushCTA(e) {
       "<"
     );
   gsap
-    .timeline({
-      scrollTrigger: {
-        trigger: t,
-        start: "center bottom",
-        toggleActions: "play none none reverse",
-      },
-      defaults: { ease: "back.out(1.8)", duration: 0.6 },
-      onStart: () => {
-        gsap.delayedCall(0.5, () => {
-          l.play();
-        });
-      },
-      onReverseComplete: () => {
-        l.goToAndStop(0, !0);
-      },
-    })
+  
     .from(o, { scale: 0.85, rotate: 2, xPercent: 10 })
     .from(r, { scale: 0.85, rotate: -2, xPercent: -10 }, "<");
 }
@@ -1191,7 +1121,7 @@ function initHomeSliders(e) {
       pagination: { el: ".pagination.is--intro__cards", type: "bullets" },
     });
     isMobileLandscape ||
-      (e.destroy(!0, !0), lenis.resize(), ScrollTrigger.refresh());
+      (e.destroy(!0, !0), lenis.resize());
   }
   if (o) {
     const e = new Swiper(o, {
@@ -1203,7 +1133,7 @@ function initHomeSliders(e) {
       pagination: { el: ".pagination.is--steps__cards", type: "bullets" },
     });
     isMobileLandscape ||
-      (e.destroy(!0, !0), lenis.resize(), ScrollTrigger.refresh());
+      (e.destroy(!0, !0), lenis.resize());
   }
 }
 function initVideoOnHover() {
@@ -1351,15 +1281,7 @@ function initHomeParallax() {
     i = n.querySelector(".h-med"),
     l = n.querySelector(".p-med");
   gsap
-    .timeline({
-      scrollTrigger: {
-        trigger: e,
-        start: "top 85%",
-        end: "bottom center",
-        scrub: !0,
-      },
-      defaults: { ease: "linear", duration: 1 },
-    })
+    
     .to(o, { yPercent: 24, duration: 1 })
     .to(t, { yPercent: 18, duration: 1 }, 0)
     .to(r, { yPercent: -250, xPercent: -60, rotate: -3, duration: 1 }, 0)
@@ -1391,15 +1313,8 @@ function initStackGuidanceAnimations(e) {
       path: e.getAttribute("data-lottie-path"),
     });
     r.push(t);
-  }),
-    gsap.timeline({
-      scrollTrigger: {
-        trigger: t,
-        start: "top center",
-        end: "top bottom",
-        onEnter: () => playLottieAnimationsStaggered(r, 1),
-      },
-    });
+  })
+
 }
 function initStackSaveAnimations(e) {
   e || (e = document.querySelector('[data-barba="container"]'));
@@ -1416,15 +1331,7 @@ function initStackSaveAnimations(e) {
       path: e.getAttribute("data-lottie-path"),
     });
     r.push(t);
-  }),
-    gsap.timeline({
-      scrollTrigger: {
-        trigger: t,
-        start: "top center",
-        end: "top bottom",
-        onEnter: () => playLottieAnimationsStaggered(r, 0.15),
-      },
-    });
+  })
 }
 function initStackInvestAnimations(e) {
   e || (e = document.querySelector('[data-barba="container"]'));
@@ -1441,44 +1348,12 @@ function initStackInvestAnimations(e) {
       path: e.getAttribute("data-lottie-path"),
     });
     r.push(t);
-  }),
-    gsap.timeline({
-      scrollTrigger: {
-        trigger: t,
-        start: "top center",
-        end: "top bottom",
-        onEnter: () => playLottieAnimationsStaggered(r, 0.2),
-      },
-    });
+  })
 }
 function initPricingScroll() {
-  if (prefersReducedMotion() || window.innerWidth < 768) return;
-  ScrollTrigger.refresh();
-  const e = document.querySelector("[data-pricing-section]");
-  if (!e) return;
-  const t = e.querySelector("[data-pricing-heading]"),
-    o = t.querySelector("h3"),
-    r = e.querySelector(".eyebrow");
-  gsap
-    .timeline({
-      scrollTrigger: {
-        trigger: e,
-        start: "top 75%",
-        end: "top top",
-        scrub: !0,
-      },
-    })
-    .from(t, { y: "-20em", ease: "none" }, 0)
-    .fromTo(o, { fontSize: "7.25em" }, { fontSize: "2.5em", ease: "none" }, 0)
-    .fromTo(
-      r,
-      { fontSize: "1.25rem" },
-      { fontSize: "0.75rem", ease: "none" },
-      0
-    );
+
 }
 function initPriceCards(e) {
-  ScrollTrigger.refresh(),
     e || (e = document.querySelector('[data-barba="container"]'));
   let t = e.querySelector(".p-cards__container"),
     o = t.querySelector(".p-card.is--left"),
@@ -1495,16 +1370,7 @@ function initPriceCards(e) {
       path: n.getAttribute("data-lottie-path"),
     });
   gsap
-    .timeline({
-      scrollTrigger: {
-        trigger: t,
-        start: "top bottom",
-        toggleActions: "play none none reverse",
-      },
-      onReverseComplete: () => {
-        s.goToAndStop(0, !0);
-      },
-    })
+    
     .from(o, {
       xPercent: 80,
       yPercent: 30,
@@ -1595,18 +1461,7 @@ function initPriceCards(e) {
     (t = null);
 }
 function initImgScroll() {
-  if (prefersReducedMotion()) return;
-  gsap
-    .timeline({
-      scrollTrigger: {
-        trigger: ".img-scroll",
-        start: "top 80%",
-        end: "bottom 20%",
-        scrub: !0,
-      },
-    })
-    .to(".img-scroll", { width: "100%", ease: "none" })
-    .to(".img-scroll", { width: "80%", ease: "none" });
+  
 }
 function initGuidesSlider() {
   new Swiper(".swiper.is--guides", {
@@ -1630,45 +1485,12 @@ function toggleTextBlocks(e) {
   const t = e.querySelectorAll(".track-text__item"),
     o = e.querySelectorAll(".track-dot"),
     r = e.querySelector("[data-track-wrap]");
-  ScrollTrigger.create({
-    trigger: r,
-    start: "top top",
-    end: "bottom bottom",
-    scrub: !0,
-    onUpdate: (e) => {
-      const r = e.progress,
-        a = Math.min(Math.floor(r * t.length), t.length - 1);
-      t.forEach((e) => e.classList.remove("active")),
-        o.forEach((e) => e.classList.remove("active")),
-        a < t.length &&
-          (t[a].classList.add("active"), o[a].classList.add("active"));
-    },
-  }),
-    gsap.to("[data-track-image]", {
-      yPercent: 44,
-      scrollTrigger: {
-        trigger: r,
-        start: "top top",
-        end: "bottom bottom",
-        scrub: !0,
-      },
-    });
+
+  
 }
 function initBlueSections() {
   document.querySelectorAll("[data-section-blue]").forEach((e) => {
-    ScrollTrigger.create({
-      trigger: e,
-      start: "top 25%",
-      end: "bottom 75%",
-      onEnter: () =>
-        gsap.to(".section", { backgroundColor: "#eff7ff", duration: 0.5 }),
-      onLeave: () =>
-        gsap.to(".section", { backgroundColor: "#fff", duration: 0.5 }),
-      onEnterBack: () =>
-        gsap.to(".section", { backgroundColor: "#eff7ff", duration: 0.5 }),
-      onLeaveBack: () =>
-        gsap.to(".section", { backgroundColor: "#fff", duration: 0.5 }),
-    });
+  
   });
 }
 function initGuideCardsHover() {
@@ -1705,68 +1527,19 @@ function initColorChanges() {
   let e = document.querySelectorAll("[data-section-blue]");
   e.length > 0 &&
     e.forEach((e) => {
-      ScrollTrigger.create({
-        trigger: e,
-        start: "top 50%",
-        end: "bottom 50%",
-        onEnter: () =>
-          gsap.to(".section", { backgroundColor: "#eff7ff", duration: 0.5 }),
-        onLeave: () =>
-          gsap.to(".section", { backgroundColor: "#fff", duration: 0.5 }),
-        onEnterBack: () =>
-          gsap.to(".section", { backgroundColor: "#eff7ff", duration: 0.5 }),
-        onLeaveBack: () =>
-          gsap.to(".section", { backgroundColor: "#fff", duration: 0.5 }),
-      });
+     
     });
   let t = document.querySelectorAll("[data-section-green]");
-  t.length > 0 &&
-    t.forEach((e) => {
-      ScrollTrigger.create({
-        trigger: e,
-        start: "top 50%",
-        end: "bottom 60%",
-        onEnter: () =>
-          gsap.to(".section", { backgroundColor: "#f2f7ee", duration: 0.5 }),
-        onLeave: () =>
-          gsap.to(".section", { backgroundColor: "#fff", duration: 0.5 }),
-        onEnterBack: () =>
-          gsap.to(".section", { backgroundColor: "#f2f7ee", duration: 0.5 }),
-        onLeaveBack: () =>
-          gsap.to(".section", { backgroundColor: "#fff", duration: 0.5 }),
-      });
-    });
+  
+  
   let o = document.querySelectorAll("[data-section-orange]");
-  o.length > 0 &&
-    o.forEach((e) => {
-      ScrollTrigger.create({
-        trigger: e,
-        start: "top 50%",
-        end: "bottom 60%",
-        onEnter: () =>
-          gsap.to(".section", { backgroundColor: "#f9e1d3", duration: 0.5 }),
-        onLeave: () =>
-          gsap.to(".section", { backgroundColor: "#fff", duration: 0.5 }),
-        onEnterBack: () =>
-          gsap.to(".section", { backgroundColor: "#f9e1d3", duration: 0.5 }),
-        onLeaveBack: () =>
-          gsap.to(".section", { backgroundColor: "#fff", duration: 0.5 }),
-      });
-    });
+
 }
 function initVideoScroll(e) {
   e || (e = document.querySelector('[data-barba="container"]'));
   let t = e.querySelector(".video-scroll"),
     o = t.querySelector("img");
   gsap
-    .timeline({
-      scrollTrigger: {
-        trigger: t,
-        start: "top bottom",
-        end: "top 20%",
-        scrub: 1,
-      },
-    })
     .from(t, { scale: 0.8 })
     .from(o, { scale: 1.1 }, 0);
 }
@@ -1777,16 +1550,10 @@ function initInvestCards() {
     o = e.querySelector(".card-w.is--right"),
     r = e.querySelector(".card-w.is--center");
   gsap.delayedCall(2, () => {
-    ScrollTrigger.refresh();
+ 
   }),
     gsap
-      .timeline({
-        scrollTrigger: {
-          trigger: e,
-          start: "top 60%",
-          toggleActions: "play none none reverse",
-        },
-      })
+      
       .from(t, {
         xPercent: 80,
         yPercent: 20,
@@ -1815,18 +1582,7 @@ function initScrollingTitles(e) {
   e || (e = document.querySelector('[data-barba="container"]'));
   const t = e.querySelector("[data-track-wrap]"),
     o = t.querySelectorAll(".h-display");
-  ScrollTrigger.create({
-    trigger: t,
-    start: "top top",
-    end: "bottom bottom",
-    scrub: !0,
-    onUpdate: (e) => {
-      const t = Math.max(0, e.progress - 0.1),
-        r = Math.min(Math.floor((t / 0.9) * o.length), o.length - 1);
-      o.forEach((e) => e.classList.remove("is--active")),
-        r < o.length && o[r].classList.add("is--active");
-    },
-  });
+
 }
 function initGeneral(e) {
   initSplitText(e),
@@ -1836,7 +1592,6 @@ function initGeneral(e) {
     initToolTips(),
     initVideoControls(e),
     prefersReducedMotion() 
-     
 }
 function initHome(e) {
 
@@ -1855,8 +1610,8 @@ function initHome(e) {
     initStackSaveAnimations(e),
     initStackInvestAnimations(e),
     initPriceCards(e),
-    initPricingScroll(),
-    initGoalsScroll(e),
+ 
+  
     initMemberStories();
 }
 function initGuidesPage(e) {
@@ -1864,15 +1619,13 @@ function initGuidesPage(e) {
     initGuideCardsHover(),
     initCardsIntro(),
     initGuidesOverlay(e),
-    initImgScroll(),
+
     toggleTextBlocks(e),
     initStackGuidanceAnimations(e),
-    initGoalsScroll(),
     initBlueSections();
 }
 function initSaveInvest(e) {
   initColorChanges(),
-    initVideoScroll(e),
     initInvestCards(),
  
     initStackSaveAnimations(e),
@@ -1885,15 +1638,7 @@ window.addEventListener("resize", handleResize),
     $(e.next.container).removeClass("fixed"),
       $(".is--transitioning").removeClass("is--transitioning"),
       resetWebflow(e),
-      ScrollTrigger.refresh(),
-      lenis.scrollTo(0, {
-        immediate: !0,
-        force: !0,
-        lock: !0,
-        onComplete: () => {
-          lenis.start();
-        },
-      }),
+  
       initGeneral();
   }),
   barba.hooks.leave((e) => {

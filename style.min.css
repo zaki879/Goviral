@@ -1,7 +1,8 @@
 html {
     -webkit-text-size-adjust: 100%;
     -ms-text-size-adjust: 100%;
-    font-family: sans-serif
+    font-family: sans-serif;
+    pointer-events: none;
 }
 
 body {
@@ -2254,7 +2255,7 @@ body {
     font-family: PP Neue Montreal, sans-serif;
     font-size: 14px;
     font-weight: 500;
-    line-height: 20px
+    line-height: 20px;
 }
 
 h1 {
