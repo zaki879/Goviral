@@ -1,6 +1,6 @@
 /**
  * Minified by jsDelivr using Terser v5.19.2.
- * Original file: /gh/ilja-van-eck/Bouchebtoul@2.0.0/src/script.js
+ * Original file: /gh/ilja-van-eck/Goviral@2.0.0/src/script.js
  *
  * Do NOT use SRI with dynamically generated files! More information: https://www.jsdelivr.com/using-sri-with-dynamic-files
  */
@@ -418,7 +418,7 @@ function initSaveCalculator() {
   const e = 1e3,
     t = 5,
     o = [
-      { comparison: "Bouchebtoul", apy: t, highlight: !0 },
+      { comparison: "Goviral", apy: t, highlight: !0 },
       { comparison: "Apple<sup>3</sup>", apy: 4.25 },
       { comparison: "Natl Avg<sup>*</sup>", apy: 0.46 },
       { comparison: "Chase<sup>3</sup>", apy: 0.01 },
@@ -503,7 +503,7 @@ function initInvestCalculator() {
     }),
     o = document.getElementById("feeTable");
   [
-    { comparison: "Bouchebtoul", fee: 0, highlight: !0 },
+    { comparison: "Goviral", fee: 0, highlight: !0 },
     { comparison: "Robo-Advisors*", fee: 0.25 },
     { comparison: "Traditional Advisors*", fee: 1 },
   ].forEach((r) => {
@@ -1263,7 +1263,7 @@ function createCardWrapTimeline(e, t) {
           }),
         onComplete: () =>
           gsap.set(e.querySelectorAll("[data-card]"), {
-            pointerEvents: "auto",
+            pointerEvents: "none",
           }),
       }
     ),
