@@ -898,6 +898,12 @@
     requestAnimationFrame(raf);
   }
   requestAnimationFrame(raf);
+  window.addEventListener('message', (event) => {
+    if (event.data && event.data.scrollTop !== undefined) {
+      window.scrollTo(0, event.data.scrollTop);
+    }
+  });
+  
 </script>
 
 
