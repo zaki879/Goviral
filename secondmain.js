@@ -1263,7 +1263,7 @@ function createCardWrapTimeline(e, t) {
           }),
         onComplete: () =>
           gsap.set(e.querySelectorAll("[data-card]"), {
-            pointerEvents: "none",
+            pointerEvents: "auto",
           }),
       }
     ),
