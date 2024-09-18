@@ -890,20 +890,14 @@
   <script src="https://zaki879.github.io/Goviral/secondmain.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@latest"></script>
 <script>
-  const lenisIframe = new Lenis({
+  const lenis = new Lenis({
     smooth: true,
-    lerp: 0.1,  // Adjust the smooth scroll speed
   });
-  
-  // Start the animation loop for the iframe
   function raf(time) {
-    lenisIframe.raf(time);
+    lenis.raf(time);
     requestAnimationFrame(raf);
   }
-  
   requestAnimationFrame(raf);
-  
-  
 </script>
 
 
