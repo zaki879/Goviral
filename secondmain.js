@@ -1,3 +1,4 @@
+
 const isMobile = window.innerWidth < 480,
   isMobileLandscape = window.innerWidth < 768,
   isDesktop = window.innerWidth > 991,
@@ -122,7 +123,13 @@ function initHomeLoader() {
   setTimeout(() => {
     titleLines = i.querySelectorAll(".line");
   }, 1e3);
-
+  let s = lottie.loadAnimation({
+    container: r,
+    renderer: "svg",
+    loop: !1,
+    autoplay: !1,
+    path: r.getAttribute("data-animation-path"),
+  });
   t.classList.add("is--transitioning"),
     navW.setAttribute("theme", "light"),
     gsap.set(e, { cursor: "wait" }),
@@ -276,7 +283,70 @@ function initCursorAndButtons(e) {
       (t.style.transform = `translate(${a}px, ${n}px) rotate(${c}deg)`),
       (s = r),
       requestAnimationFrame(e);
-  })();
+  })(),
+  
+    document.querySelectorAll("[data-cursor]").forEach((e) => {
+      e.addEventListener("mouseenter", function () {
+        const e = document.querySelector(".cursor-item");
+        e && (e.style.display = "flex");
+        const t = this.getAttribute("data-cursor");
+        if (t) {
+          const e = document.querySelector("[data-cursor-text]");
+          e && (e.textContent = t);
+        }
+      }),
+        e.addEventListener("mouseleave", function () {
+          const e = document.querySelector(".cursor-item");
+          e && (e.style.display = "");
+        });
+    }),
+    e.querySelectorAll(".button").forEach((e) => {
+      prefersReducedMotion() ||
+        e.addEventListener("mouseenter", function () {
+          const t = e.parentElement,
+            o = (e.getBoundingClientRect(), Math.floor(2 * Math.random()) + 1);
+          for (let r = 0; r < o; r++) {
+            const o = document.createElement("div");
+            (o.style.position = "absolute"),
+              (o.style.width = "120px"),
+              (o.style.height = "120px"),
+              (o.style.pointerEvents = "none");
+            const r = Math.floor(Math.random() * lottieAnimations.length),
+              a = lottieAnimations[r],
+              n = ["top-left", "top-right", "bottom-left", "bottom-right"],
+              i = n[Math.floor(Math.random() * n.length)];
+            d(o, i), t.appendChild(o);
+            const l = lottie.loadAnimation({
+              container: o,
+              renderer: "svg",
+              loop: !1,
+              autoplay: !0,
+              path: a,
+            });
+            gsap
+              .timeline({})
+              .to(e, { scale: 0.95, duration: 0.25 })
+              .to(e, { scale: 1, duration: 0.45, ease: "back.out(5)" }),
+              l.addEventListener("complete", () => {
+                o.remove();
+              });
+          }
+        });
+    });
+}
+function initToolTips() {
+  const e = document.querySelectorAll(".tooltip-w");
+  e &&
+    e.forEach((e) => {
+      e.addEventListener("mouseenter", () => {
+        const t = e.querySelector(".tooltip");
+        t && t.classList.add("active");
+      }),
+        e.addEventListener("mouseleave", () => {
+          const t = e.querySelector(".tooltip");
+          t && t.classList.remove("active");
+        });
+    });
 }
 function initHomeVideo() {
   let e;
@@ -338,6 +408,157 @@ function setupTextTransitions(e, t) {
       a = e;
     });
 }
+function initSaveCalculator() {
+  const e = 1e3,
+    t = 5,
+    o = [
+      { comparison: "Goviral", apy: t, highlight: !0 },
+      { comparison: "Apple<sup>3</sup>", apy: 4.25 },
+      { comparison: "Natl Avg<sup>*</sup>", apy: 0.46 },
+      { comparison: "Chase<sup>3</sup>", apy: 0.01 },
+    ],
+    r = new Intl.NumberFormat("en-US", {
+      style: "percent",
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    }),
+    a = new Intl.NumberFormat("en-US", {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    }),
+    n = document.getElementById("apyTable");
+  o.forEach((e) => {
+    const t = document.createElement("tr");
+    e.highlight && t.setAttribute("class", "yellow"),
+      t.insertAdjacentHTML(
+        "beforeend",
+        `<td>${e.comparison}</td><td>${r.format(
+          e.apy / 100
+        )} APY</td><td data-apy="${e.apy}">$${a.format(
+          (2e4 * e.apy) / 100
+        )}</td>`
+      ),
+      n.appendChild(t);
+  });
+  const i = document.getElementById("cashEntryInput");
+  function l(e) {
+    return e.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+  function s(o, r) {
+    var n = o.value;
+    if ("" === n) return;
+    var i = n.length,
+      s = o.selectionStart;
+    if (n.indexOf(".") >= 0) {
+      var u = n.indexOf("."),
+        p = n.substring(0, u),
+        g = n.substring(u);
+      (p = l(p)),
+        (g = l(g)),
+        "blur" === r && (g += "00"),
+        (n = "$" + p + "." + (g = g.substring(0, 2)));
+    } else (n = "$" + (n = l(n))), "blur" === r && (n += ".00");
+    (o.value = n), (s = n.length - i + s), o.setSelectionRange(s, s);
+    const m = parseFloat(n.replaceAll("$", "").replaceAll(",", ""));
+    !(function (e) {
+      e || (e = 0);
+      for (let t = 0; t < c.length; t++) {
+        const o = c[t],
+          r = parseFloat(o.getAttribute("data-apy")) / 100;
+        o.innerHTML = "$" + a.format(e * r);
+      }
+    })(m),
+      (function (o) {
+        const r = (t / 100) * o;
+        d.style.visibility = r >= e ? "visible" : "hidden";
+      })(m);
+  }
+  (i.onclick = function () {
+    "" === i.value && (i.value = "$");
+  }),
+    (i.onkeyup = function () {
+      s(i);
+    }),
+    (i.blur = function () {
+      s(i, "blur");
+    });
+  const c = n.querySelectorAll("[data-apy]");
+  const d = document.getElementById("interestCoversMembership");
+}
+function initInvestCalculator() {
+  const e = new Intl.NumberFormat("en-US", {
+      style: "percent",
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    }),
+    t = new Intl.NumberFormat("en-US", {
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0,
+    }),
+    o = document.getElementById("feeTable");
+  [
+    { comparison: "Goviral", fee: 0, highlight: !0 },
+    { comparison: "Robo-Advisors*", fee: 0.25 },
+    { comparison: "Traditional Advisors*", fee: 1 },
+  ].forEach((r) => {
+    const a = document.createElement("tr");
+    r.highlight && a.setAttribute("class", "yellow"),
+      a.insertAdjacentHTML(
+        "beforeend",
+        `<td>${r.comparison}</td><td>${e.format(
+          r.fee / 100
+        )}</td><td data-fee="${r.fee}">$${t.format(l(75e3, r.fee / 100))}</td>`
+      ),
+      o.appendChild(a);
+  });
+  const r = document.getElementById("investmentInput");
+  function a(e) {
+    return e.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+  function n(e, o) {
+    var r = e.value;
+    if ("" === r) return;
+    var n = r.length,
+      s = e.selectionStart;
+    if (r.indexOf(".") >= 0) {
+      var c = r.indexOf("."),
+        d = r.substring(0, c),
+        u = r.substring(c);
+      (d = a(d)),
+        (u = a(u)),
+        "blur" === o && (u += "00"),
+        (r = "$" + d + "." + (u = u.substring(0, 2)));
+    } else (r = "$" + (r = a(r))), "blur" === o && (r += ".00");
+    (e.value = r), (s = r.length - n + s), e.setSelectionRange(s, s);
+    !(function (e) {
+      e || (e = 0);
+      for (let o = 0; o < i.length; o++) {
+        const r = i[o],
+          a = parseFloat(r.getAttribute("data-fee")) / 100;
+        r.innerHTML = "$" + t.format(l(e, a));
+      }
+    })(parseFloat(r.replaceAll("$", "").replaceAll(",", "")));
+  }
+  (r.onclick = function () {
+    "" === r.value && (r.value = "$");
+  }),
+    (r.onkeyup = function () {
+      n(r);
+    }),
+    (r.blur = function () {
+      n(r, "blur");
+    });
+  const i = o.querySelectorAll("[data-fee]");
+  function l(e, t) {
+    const o = 5e3,
+      r = 0.08;
+    return (
+      (e + 62500) * Math.pow(1.08, 10) -
+      62500 -
+      ((e + o / (r - t)) * Math.pow(r - t + 1, 10) - o / (r - t))
+    );
+  }
+}
 function controlTimeline(e, t) {
   const o = document.querySelector(e),
     r = o ? cardWrapTimelines.get(o) : null;
@@ -363,6 +584,58 @@ function initSplitText(e) {
       splitWords.revert(),
       t());
   });
+}
+function initHeadlines(e) {
+  function t(e, t) {
+    ScrollTrigger.create({
+      trigger: e,
+      start: "top bottom",
+      onLeaveBack: () => {
+        t.progress(0), t.pause();
+      },
+    }),
+      ScrollTrigger.create({
+        trigger: e,
+        start: "top 80%",
+        onEnter: () => {
+          t.play();
+        },
+      });
+  }
+  e || (e = document.querySelector('[data-barba="container"]')),
+    document.querySelectorAll("[lines-slide-up]").forEach(function (e, o) {
+      let r = gsap.timeline({ paused: !0 });
+      r.fromTo(
+        e.querySelectorAll(".line"),
+        { opacity: 0, yPercent: 50, rotate: 3 },
+        {
+          opacity: 1,
+          rotate: 0,
+          yPercent: 0,
+          duration: 0.5,
+          ease: "back.out(3)",
+          stagger: { amount: 0.25 },
+        }
+      ),
+        t(e, r);
+    });
+  let o = e.querySelectorAll(".faq-item");
+  o &&
+    o.forEach(function (e, o) {
+      let r = gsap.timeline({ paused: !0 });
+      r.fromTo(
+        e,
+        { opacity: 0, yPercent: 50, rotate: 3 },
+        {
+          opacity: 1,
+          rotate: 0,
+          yPercent: 0,
+          duration: 0.5,
+          ease: "back.out(3)",
+        }
+      ),
+        t(e, r);
+    });
 }
 function initVideoControls(e) {
   e || (e = document.querySelector('[data-barba="container"]'));
@@ -478,6 +751,20 @@ function initMobileSliders() {
       o(e.querySelector("img"), e.querySelector("video"));
     });
 }
+function initNavToggle() {
+  const e = document.querySelector("[data-nav-toggle]");
+  ScrollTrigger.create({
+    trigger: e,
+    start: "top top",
+    onEnter: () => {
+      navW.setAttribute("theme", "dark");
+    },
+    onLeaveBack: () => {
+      navW.setAttribute("theme", "light");
+    },
+  });
+}
+
 function initGuidesOverlay(e) {
   e || (e = document.querySelector('[data-barba="container"]'));
   const t = e.querySelectorAll("[data-overlay-open]"),
@@ -656,7 +943,86 @@ function initGuidesOverlay(e) {
       c(0 === e ? r.length - 1 : e - 1, "prev");
     });
 }
-
+function initMemberStories() {
+  document.querySelectorAll("[data-modal-open]").forEach((e) => {
+    e.addEventListener("click", function () {
+      !(function (e) {
+        gsap
+          .timeline()
+          .set(".modal-w", { display: "flex" })
+          .fromTo(
+            ".modal-bg",
+            { filter: "blur(0px)", opacity: 0 },
+            {
+              filter: "blur(4px)",
+              opacity: 1,
+              duration: 0.6,
+              ease: "power3.out",
+            }
+          )
+          .fromTo(
+            ".modal-inner",
+            { opacity: 0, yPercent: 5 },
+            { opacity: 1, yPercent: 0, duration: 0.6, ease: "power3.out" },
+            0
+          );
+        const t = document.querySelector(".modal-w video");
+        t.getAttribute("src") !== e
+          ? ((t.src = e),
+            t.load(),
+            globalPlayState ||
+              (t.oncanplay = () => {
+                t.pause();
+              }))
+          : globalPlayState && ((t.muted = globalMuteState), t.play());
+        globalPlayState &&
+          (t.oncanplay = () => {
+            (t.muted = globalMuteState), t.play();
+          });
+        document.querySelectorAll("[data-modal-close]").forEach((e) => {
+          e.addEventListener("click", function () {
+            t.pause(),
+              gsap.to(".modal-bg", {
+                filter: "blur(0px)",
+                duration: 0.5,
+                opacity: 0,
+                onComplete: () => {
+                  gsap.set(".modal-w", { display: "none" });
+                },
+              }),
+              gsap.to(".modal-inner", {
+                opacity: 0,
+                yPercent: 5,
+                duration: 0.5,
+                ease: "power3.out",
+              });
+          });
+        });
+      })(this.getAttribute("data-video-src"));
+    });
+  });
+}
+function initGoalsScroll(e) {
+  if (prefersReducedMotion()) return;
+  let t = (e = e || document).querySelector(".goals-wrap"),
+    o = t.querySelectorAll(".goals-card");
+  gsap
+    .timeline({
+      scrollTrigger: {
+        trigger: t,
+        start: "top 80%",
+        toggleActions: "play none none reverse",
+      },
+    })
+    .from(o, {
+      bottom: "40%",
+      left: "42%",
+      ease: "back.out(2.5)",
+      duration: 1,
+      stagger: { each: 0.05, from: "end" },
+      rotate: () => 24 * Math.random() - 12,
+    });
+}
 function initGuidesCollage(e) {
   if (prefersReducedMotion()) return;
   let t = (e = e || document).querySelector(".guides-collage");
@@ -685,8 +1051,23 @@ function initHomeIntro() {
   let t = e.querySelector(".intro-spacer.is--top"),
     o = e.querySelector(".intro-spacer.is--bottom"),
     r = document.querySelector(".intro-image__top"),
-    a = document.querySelector(".intro-image__bottom");
-
+    a = document.querySelector(".intro-image__bottom"),
+    n = r.querySelector("[data-lottie]"),
+    i = a.querySelector("[data-lottie]"),
+    l = lottie.loadAnimation({
+      container: n,
+      renderer: "svg",
+      loop: !1,
+      autoplay: !1,
+      path: n.getAttribute("data-lottie-path"),
+    }),
+    s = lottie.loadAnimation({
+      container: i,
+      renderer: "svg",
+      loop: !1,
+      autoplay: !1,
+      path: i.getAttribute("data-lottie-path"),
+    });
   gsap
     .timeline({
       scrollTrigger: {
@@ -745,7 +1126,15 @@ function initBushCTA(e) {
   let o = t.querySelector(".bush-cta__card.is--left"),
     r = t.querySelector(".bush-cta__card.is--right"),
     a = t.querySelector(".bush-cta__butterfly.is--left"),
-    n = t.querySelector(".bush-cta__butterfly.is--right");
+    n = t.querySelector(".bush-cta__butterfly.is--right"),
+    i = t.querySelector("[data-lottie]"),
+    l = lottie.loadAnimation({
+      container: i,
+      renderer: "svg",
+      loop: !1,
+      autoplay: !1,
+      path: i.getAttribute("data-lottie-path"),
+    });
   gsap
     .timeline({
       scrollTrigger: {
@@ -985,8 +1374,18 @@ function initStackGuidanceAnimations(e) {
   e || (e = document.querySelector('[data-barba="container"]'));
   let t = e.querySelector("[data-stack-guidance]");
   if (!t) return;
+  let o = t.querySelectorAll("[data-lottie]"),
     r = [];
-
+  o.forEach((e) => {
+    let t = lottie.loadAnimation({
+      container: e,
+      renderer: "svg",
+      loop: !1,
+      autoplay: !1,
+      path: e.getAttribute("data-lottie-path"),
+    });
+    r.push(t);
+  }),
     gsap.timeline({
       scrollTrigger: {
         trigger: t,
@@ -1000,7 +1399,18 @@ function initStackSaveAnimations(e) {
   e || (e = document.querySelector('[data-barba="container"]'));
   let t = e.querySelector("[data-stack-save]");
   if (!t) return;
-
+  let o = t.querySelectorAll("[data-lottie]"),
+    r = [];
+  o.forEach((e) => {
+    let t = lottie.loadAnimation({
+      container: e,
+      renderer: "svg",
+      loop: !1,
+      autoplay: !1,
+      path: e.getAttribute("data-lottie-path"),
+    });
+    r.push(t);
+  }),
     gsap.timeline({
       scrollTrigger: {
         trigger: t,
@@ -1014,7 +1424,18 @@ function initStackInvestAnimations(e) {
   e || (e = document.querySelector('[data-barba="container"]'));
   let t = e.querySelector("[data-stack-invest]");
   if (!t) return;
-
+  let o = t.querySelectorAll("[data-lottie]"),
+    r = [];
+  o.forEach((e) => {
+    let t = lottie.loadAnimation({
+      container: e,
+      renderer: "svg",
+      loop: !1,
+      autoplay: !1,
+      path: e.getAttribute("data-lottie-path"),
+    });
+    r.push(t);
+  }),
     gsap.timeline({
       scrollTrigger: {
         trigger: t,
@@ -1057,8 +1478,16 @@ function initPriceCards(e) {
     o = t.querySelector(".p-card.is--left"),
     r = t.querySelector(".p-card.is--right"),
     a = t.querySelector(".p-card.is--center"),
+    n = t.querySelector("[data-lottie]"),
     i = t.querySelectorAll(".p-card"),
-    l = t.querySelectorAll(".p-card__sub");
+    l = t.querySelectorAll(".p-card__sub"),
+    s = lottie.loadAnimation({
+      container: n,
+      renderer: "svg",
+      loop: !1,
+      autoplay: !1,
+      path: n.getAttribute("data-lottie-path"),
+    });
   gsap
     .timeline({
       scrollTrigger: {
@@ -1395,12 +1824,17 @@ function initScrollingTitles(e) {
 }
 function initGeneral(e) {
   initSplitText(e),
-      initVideoControls(e),
+   
+
+
+    initToolTips(),
+    initVideoControls(e),
     prefersReducedMotion() 
      
 }
 function initHome(e) {
 
+    initNavToggle(),
     initHomeSliders(e),
     isMobile && initMobileSliders(),
     initHomeIntro(),
@@ -1415,7 +1849,9 @@ function initHome(e) {
     initStackSaveAnimations(e),
     initStackInvestAnimations(e),
     initPriceCards(e),
-    initPricingScroll()
+    initPricingScroll(),
+    initGoalsScroll(e),
+    initMemberStories();
     
 }
 function initGuidesPage(e) {
@@ -1426,6 +1862,7 @@ function initGuidesPage(e) {
     initImgScroll(),
     toggleTextBlocks(e),
     initStackGuidanceAnimations(e),
+    initGoalsScroll(),
     initBlueSections();
 }
 function initSaveInvest(e) {
@@ -1506,6 +1943,7 @@ window.addEventListener("resize", handleResize),
           let t = e.next.container;
           transitionIn(t),
             initGeneral(t),
+            initSaveCalculator(),
             initSaveInvest(t);
         },
       },
@@ -1515,6 +1953,7 @@ window.addEventListener("resize", handleResize),
           let t = e.next.container;
           transitionIn(t),
             initGeneral(t),
+            initInvestCalculator(),
             initSaveInvest(t);
         },
       },
