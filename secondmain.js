@@ -122,13 +122,7 @@ function initHomeLoader() {
   setTimeout(() => {
     titleLines = i.querySelectorAll(".line");
   }, 1e3);
-  let s = lottie.loadAnimation({
-    container: r,
-    renderer: "svg",
-    loop: !1,
-    autoplay: !1,
-    path: r.getAttribute("data-animation-path"),
-  });
+
   t.classList.add("is--transitioning"),
     navW.setAttribute("theme", "light"),
     gsap.set(e, { cursor: "wait" }),
@@ -691,23 +685,8 @@ function initHomeIntro() {
   let t = e.querySelector(".intro-spacer.is--top"),
     o = e.querySelector(".intro-spacer.is--bottom"),
     r = document.querySelector(".intro-image__top"),
-    a = document.querySelector(".intro-image__bottom"),
-    n = r.querySelector("[data-lottie]"),
-    i = a.querySelector("[data-lottie]"),
-    l = lottie.loadAnimation({
-      container: n,
-      renderer: "svg",
-      loop: !1,
-      autoplay: !1,
-      path: n.getAttribute("data-lottie-path"),
-    }),
-    s = lottie.loadAnimation({
-      container: i,
-      renderer: "svg",
-      loop: !1,
-      autoplay: !1,
-      path: i.getAttribute("data-lottie-path"),
-    });
+    a = document.querySelector(".intro-image__bottom");
+
   gsap
     .timeline({
       scrollTrigger: {
@@ -766,15 +745,7 @@ function initBushCTA(e) {
   let o = t.querySelector(".bush-cta__card.is--left"),
     r = t.querySelector(".bush-cta__card.is--right"),
     a = t.querySelector(".bush-cta__butterfly.is--left"),
-    n = t.querySelector(".bush-cta__butterfly.is--right"),
-    i = t.querySelector("[data-lottie]"),
-    l = lottie.loadAnimation({
-      container: i,
-      renderer: "svg",
-      loop: !1,
-      autoplay: !1,
-      path: i.getAttribute("data-lottie-path"),
-    });
+    n = t.querySelector(".bush-cta__butterfly.is--right");
   gsap
     .timeline({
       scrollTrigger: {
@@ -1014,18 +985,8 @@ function initStackGuidanceAnimations(e) {
   e || (e = document.querySelector('[data-barba="container"]'));
   let t = e.querySelector("[data-stack-guidance]");
   if (!t) return;
-  let o = t.querySelectorAll("[data-lottie]"),
     r = [];
-  o.forEach((e) => {
-    let t = lottie.loadAnimation({
-      container: e,
-      renderer: "svg",
-      loop: !1,
-      autoplay: !1,
-      path: e.getAttribute("data-lottie-path"),
-    });
-    r.push(t);
-  }),
+
     gsap.timeline({
       scrollTrigger: {
         trigger: t,
@@ -1039,18 +1000,7 @@ function initStackSaveAnimations(e) {
   e || (e = document.querySelector('[data-barba="container"]'));
   let t = e.querySelector("[data-stack-save]");
   if (!t) return;
-  let o = t.querySelectorAll("[data-lottie]"),
-    r = [];
-  o.forEach((e) => {
-    let t = lottie.loadAnimation({
-      container: e,
-      renderer: "svg",
-      loop: !1,
-      autoplay: !1,
-      path: e.getAttribute("data-lottie-path"),
-    });
-    r.push(t);
-  }),
+
     gsap.timeline({
       scrollTrigger: {
         trigger: t,
@@ -1064,18 +1014,7 @@ function initStackInvestAnimations(e) {
   e || (e = document.querySelector('[data-barba="container"]'));
   let t = e.querySelector("[data-stack-invest]");
   if (!t) return;
-  let o = t.querySelectorAll("[data-lottie]"),
-    r = [];
-  o.forEach((e) => {
-    let t = lottie.loadAnimation({
-      container: e,
-      renderer: "svg",
-      loop: !1,
-      autoplay: !1,
-      path: e.getAttribute("data-lottie-path"),
-    });
-    r.push(t);
-  }),
+
     gsap.timeline({
       scrollTrigger: {
         trigger: t,
@@ -1118,16 +1057,8 @@ function initPriceCards(e) {
     o = t.querySelector(".p-card.is--left"),
     r = t.querySelector(".p-card.is--right"),
     a = t.querySelector(".p-card.is--center"),
-    n = t.querySelector("[data-lottie]"),
     i = t.querySelectorAll(".p-card"),
-    l = t.querySelectorAll(".p-card__sub"),
-    s = lottie.loadAnimation({
-      container: n,
-      renderer: "svg",
-      loop: !1,
-      autoplay: !1,
-      path: n.getAttribute("data-lottie-path"),
-    });
+    l = t.querySelectorAll(".p-card__sub");
   gsap
     .timeline({
       scrollTrigger: {
