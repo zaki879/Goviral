@@ -102,7 +102,10 @@ button::-moz-focus-inner {
     line-height: 1;
     font-family: webflow-icons !important
 }
-
+.swiper-slide-active [data-t-fade] {
+    opacity: 1;
+    transform: translate3d(0px, 0rem, 0px);
+}
 .w-icon-nav-menu:before {
     content: "î˜‚"
 }
@@ -305,6 +308,16 @@ label {
 }
 
 @media screen and (max-width:767px) {
+    .g-card.swiper-slide {
+        width: 17.5em
+    }
+    .t-card.swiper-slide {
+        flex: none;
+        width: 17.5em;
+        height: auto;
+        margin-left: .5em;
+        margin-right: .5em
+    }
     .sectionalign {
         margin-right: 10vw !important
     }
@@ -617,7 +630,9 @@ a {
     font-size: .875rem;
     line-height: 1.4
 }
-
+.p-small.fw--sb {
+    font-weight: 600
+}
 .h-small {
     letter-spacing: -.01em;
     font-size: 1.75em;
@@ -1306,7 +1321,10 @@ a {
     height: 100%;
     position: relative
 }
-
+.card-inner.is--peach {
+    background-color: var(--color--peach);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .15)
+}
 .cursor {
     z-index: 999;
     border-radius: var(--radius--button);
@@ -1979,6 +1997,11 @@ a {
 }
 
 @media screen and (max-width:1169px) {
+    .fourth-card,
+    .fourth-card.pad--btm.swiper-slide,
+    .fourth-card.is--tall.swiper-slide {
+        width: calc(50% - 32px)
+    }
     .nav-center {
         width: 110%;
         grid-column-gap: 1.5rem;
@@ -2076,7 +2099,9 @@ a {
     .card-inner {
         color: var(--color--white)
     }
-
+    .card-inner.is--peach {
+        color: var(--color--black)
+    }
     .modal-inner {
         width: 95vw;
         overflow: visible
@@ -2152,7 +2177,29 @@ a {
         font-size: 3em
     }
 }
-
+.swiper-slide.is--guides {
+    aspect-ratio: 3/4;
+    border-top-left-radius: var(--radius--desktop);
+    border-top-right-radius: var(--radius--desktop);
+    border-bottom-left-radius: var(--radius--desktop);
+    border-bottom-right-radius: var(--radius--desktop);
+    flex: none;
+    width: 18.75em;
+    margin-left: .5rem;
+    margin-right: .5rem;
+    position: relative;
+    overflow: visible
+}
+.fourth-card.pad--btm.swiper-slide {
+    flex: 0 auto;
+    width: 25%;
+    height: auto
+}
+.fourth-card.is--tall.swiper-slide {
+    aspect-ratio: 1/1.4;
+    flex: 0 auto;
+    width: 25%
+}
 @media screen and (max-width:767px) {
     h1 {
         font-size: 2.75em
@@ -2756,6 +2803,10 @@ a {
 }
 
 @media screen and (max-width:991px) {
+    
+    .swiper-slide.is--guides {
+        color: var(--color--black)
+    }
     .main-c {
         width: 110%;
         max-width: 93.75rem;
