@@ -2204,6 +2204,10 @@ a {
     width: 25%
 }
 @media screen and (max-width:767px) {
+    .g-nav__item.active {
+        outline-offset: 3px;
+        outline: 1px solid #fbff00
+    }
     h1 {
         font-size: 2.75em
     }
