@@ -1889,6 +1889,9 @@ a {
     padding: 1.5rem
 }
 
+.play-button-icon.active {
+    transform: scale(1)
+}
 .play-button-icon {
     -webkit-backdrop-filter: blur(8px);
     backdrop-filter: blur(8px);
