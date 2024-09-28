@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap');
+
+
 html {
     -webkit-text-size-adjust: 100%;
     -ms-text-size-adjust: 100%;
@@ -100,7 +103,7 @@ button::-moz-focus-inner {
     font-style: normal;
     font-weight: 400;
     line-height: 1;
-    font-family: webflow-icons !important
+    font-family: "Space Grotesk", sans-serif !important
 }
 .swiper-slide-active [data-t-fade] {
     opacity: 1;
@@ -123,7 +126,7 @@ body {
     background-color: #000 !important;
     min-height: 100%;
     margin: 0;
-    font-family: Arial, sans-serif;
+    font-family: "Space Grotesk", sans-serif;
     font-size: 14px;
     line-height: 20px
 }
@@ -535,7 +538,7 @@ label {
 body {
     background-color: transparent !important;
     color: var(--color--black);
-    font-family: PP Neue Montreal, sans-serif;
+    font-family: "Space Grotesk", sans-serif;
     font-size: 14px;
     font-weight: 500;
     line-height: 20px
