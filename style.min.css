@@ -1801,6 +1801,7 @@ a {
     grid-column-gap: .5rem;
     grid-row-gap: .5rem;
     flex-flow: wrap;
+    
     justify-content: flex-start;
     align-items: center;
     display: flex
@@ -2504,7 +2505,7 @@ a {
 
     .overlay-item__text {
         padding-left: 1rem;
-        padding-right: 1rem
+        padding-right: 1rem;
     }
     .overlay-item.is--active {
         grid-column-gap: 1.5rem;
