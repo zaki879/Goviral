@@ -1550,6 +1550,7 @@ a {
 }
 
 .overlay-bg {
+    opacity: 0;
     z-index: 0;
     cursor: pointer;
     background-color: rgba(0, 0, 0, .3);
@@ -1563,6 +1564,7 @@ a {
 }
 
 .overlay-inner {
+    opacity: 0;
     z-index: 1;
     border-radius: var(--radius--desktop);
     background-color: var(--color--white);
@@ -2164,7 +2166,7 @@ a {
     .overlay-inner {
         width: 50em;
         min-width: auto;
-        max-width: 95vw
+        max-width: 95vw;
     }
 
     .t-card__inner {
